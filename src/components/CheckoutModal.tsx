@@ -255,11 +255,11 @@ const santiagoCosts = {
   'Centro Histórico': 150, 'Catedral': 150, 'Plaza de Armas': 150, 'San Francisco': 150,
   
   // Barrios tradicionales - costo medio
-  'Vista Alegre': 120, 'Sueño': 100, 'Los Olmos': 110, 'Altamira': 130, 
-  'Ampliación de Terrazas': 90, 'Chicharrones': 80, 'Flores': 85, 'Guilera': 95,
-  'José Martí': 100, 'Mariana Grajales': 105, 'Micro 70': 75, 'Micro 9': 70,
-  'Micro Distrito José Martí': 80, 'Nuevo Vista Alegre': 125, 'Reparto Sueño': 95,
-  'Santa Bárbara': 90, 'Terrazas': 85, 'Villa Alegre': 115,
+  'Vista Alegre': 300, 'Sueño': 250, 'Los Olmos': 500, 'Altamira': 300, 
+  'Ampliación de Terrazas': 500, 'Chicharrones': 500, 'Flores': 500, 'Guilera': 300,
+  'José Martí': 100, 'Mariana Grajales': 150, 'Micro 7': 150, 'Micro 9': 150,
+  'Micro Distrito José Martí': 150, 'Nuevo Vista Alegre': 100, 'Reparto Sueño': 250,
+  'Santa Bárbara': 300, 'Terrazas': 300, 'Villa Alegre': 200,
   
   // Barrios periféricos - costo variable según distancia
   'Abel Santamaría': 60, 'Antonio Maceo': 65, 'Boniato': 140, 'Caney': 50,
@@ -272,7 +272,7 @@ const santiagoCosts = {
   'Palma': 170, 'Paraíso': 90, 'Pastorita': 100, 'Puerto Boniato': 145,
   'Quintero': 85, 'Reparto Flores': 90, 'Reparto Micro': 75, 'Reparto Oriente': 80,
   'Reparto Patricio Lumumba': 70, 'Reparto Siboney': 155, 'Reparto Versalles': 85,
-  'San Agustín': 95, 'San Pedrito': 105, 'Siboney': 160, 'Sorribe': 110, 'Versalles': 80
+  'San Agustín': 95, 'San Pedrito': 105, 'Siboney': 1000, 'Sorribe': 110, 'Versalles': 80
 };
 
 export default function CheckoutModal({ isOpen, onClose, onConfirm }: CheckoutModalProps) {
