@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, CreditCard, User, Mail, Phone, MapPin, IdCard } from 'lucide-react';
+import { X, CreditCard, User, Mail, Phone, MapPin, Car as IdCard } from 'lucide-react';
 
 interface CheckoutModalProps {
   isOpen: boolean;
