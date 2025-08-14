@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ShoppingCart, Trash2, Star, Calendar, MessageCircle, ArrowLeft, Edit3, Tv, DollarSign, CreditCard } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { PriceCard } from '../components/PriceCard';
-import CheckoutModal, { OrderData } from '../components/CheckoutModal';
+import CheckoutModal, { OrderData, CustomerInfo } from '../components/CheckoutModal';
 import { sendOrderToWhatsApp } from '../utils/whatsapp';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../config/api';
 
@@ -11,8 +11,22 @@ export function Cart() {
   const { state, removeItem, clearCart, updatePaymentType, calculateItemPrice, calculateTotalPrice, calculateTotalByPaymentType } = useCart();
   const [showCheckoutModal, setShowCheckoutModal] = React.useState(false);
 
-  const handleCheckoutConfirm = (orderData: OrderData) => {
-    sendOrderToWhatsApp(orderData);
+  const handleCheckout = (orderData: OrderData) => {
+    // Calculate totals
+    const subtotal = calculateTotalPrice();
+    const transferFee = 0; // This would be calculated based on transfer items
+    const total = subtotal + orderData.deliveryCost;
+    
+    // Complete the order data with cart information
+    const completeOrderData: OrderData = {
+      ...orderData,
+      items: state.items,
+      subtotal,
+      transferFee,
+      total
+    };
+    
+    sendOrderToWhatsApp(completeOrderData);
     setShowCheckoutModal(false);
   };
 
@@ -430,11 +444,7 @@ export function Cart() {
         <CheckoutModal
           isOpen={showCheckoutModal}
           onClose={() => setShowCheckoutModal(false)}
-          onConfirm={handleCheckoutConfirm}
-          preselectedPaymentTypes={state.items.reduce((acc, item) => {
-            acc[item.id] = item.paymentType || 'cash';
-            return acc;
-          }, {} as Record<number, 'cash' | 'transfer'>)}
+          onConfirm={handleCheckout}
         />
       </div>
     </div>

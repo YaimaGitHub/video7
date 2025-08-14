@@ -1,36 +1,67 @@
 import React, { useState } from 'react';
-import { X, CreditCard, User, Mail, Phone, MapPin } from 'lucide-react';
+import { X, CreditCard, User, Mail, Phone, MapPin, IdCard } from 'lucide-react';
 
 interface CheckoutModalProps {
   isOpen: boolean;
   onClose: () => void;
-  total: number;
-  onCheckout: (customerInfo: CustomerInfo) => void;
+  onConfirm: (orderData: OrderData) => void;
 }
 
-interface CustomerInfo {
-  name: string;
+export interface CustomerInfo {
+  fullName: string;
+  idCard?: string;
   email: string;
   phone: string;
   address: string;
 }
 
-export default function CheckoutModal({ isOpen, onClose, total, onCheckout }: CheckoutModalProps) {
+export interface OrderData {
+  orderId: string;
+  customerInfo: CustomerInfo;
+  deliveryZone: string;
+  deliveryCost: number;
+  items: any[];
+  subtotal: number;
+  transferFee: number;
+  total: number;
+}
+
+export default function CheckoutModal({ isOpen, onClose, onConfirm }: CheckoutModalProps) {
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
-    name: '',
+    fullName: '',
+    idCard: '',
     email: '',
     phone: '',
     address: ''
   });
+  
+  const [deliveryZone, setDeliveryZone] = useState('Zona 1');
 
   const [isProcessing, setIsProcessing] = useState(false);
+
+  const deliveryZones = {
+    'Zona 1': 50,
+    'Zona 2': 100,
+    'Zona 3': 150
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
     
     try {
-      await onCheckout(customerInfo);
+      const orderData: OrderData = {
+        orderId: `ORD-${Date.now()}`,
+        customerInfo,
+        deliveryZone,
+        deliveryCost: deliveryZones[deliveryZone as keyof typeof deliveryZones],
+        items: [], // Will be populated by parent
+        subtotal: 0, // Will be calculated by parent
+        transferFee: 0, // Will be calculated by parent
+        total: 0 // Will be calculated by parent
+      };
+      
+      await onConfirm(orderData);
       onClose();
     } catch (error) {
       console.error('Checkout failed:', error);
@@ -70,13 +101,26 @@ export default function CheckoutModal({ isOpen, onClose, total, onCheckout }: Ch
             <input
               type="text"
               required
-              value={customerInfo.name}
-              onChange={(e) => handleInputChange('name', e.target.value)}
+              value={customerInfo.fullName}
+              onChange={(e) => handleInputChange('fullName', e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your full name"
             />
           </div>
 
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <IdCard className="w-4 h-4 inline mr-2" />
+              ID Card (Optional)
+            </label>
+            <input
+              type="text"
+              value={customerInfo.idCard || ''}
+              onChange={(e) => handleInputChange('idCard', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your ID card number"
+            />
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Mail className="w-4 h-4 inline mr-2" />
@@ -122,10 +166,29 @@ export default function CheckoutModal({ isOpen, onClose, total, onCheckout }: Ch
             />
           </div>
 
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <MapPin className="w-4 h-4 inline mr-2" />
+              Delivery Zone
+            </label>
+            <select
+              value={deliveryZone}
+              onChange={(e) => setDeliveryZone(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {Object.entries(deliveryZones).map(([zone, cost]) => (
+                <option key={zone} value={zone}>
+                  {zone} - ${cost} CUP
+                </option>
+              ))}
+            </select>
+          </div>
+
           <div className="border-t pt-4">
-            <div className="flex justify-between items-center mb-4">
-              <span className="text-lg font-semibold text-gray-900">Total:</span>
-              <span className="text-lg font-bold text-blue-600">${total.toFixed(2)}</span>
+            <div className="bg-blue-50 rounded-lg p-3 mb-4">
+              <p className="text-sm text-blue-700 text-center">
+                Complete the form to see the final total with delivery costs
+              </p>
             </div>
 
             <div className="flex gap-3">

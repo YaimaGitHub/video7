@@ -1,10 +1,9 @@
-import { OrderData } from '../components/CheckoutModal';
+import { OrderData, CustomerInfo } from '../components/CheckoutModal';
 
 export function sendOrderToWhatsApp(orderData: OrderData): void {
   const { 
     orderId, 
     customerInfo, 
-    paymentMethod, 
     deliveryZone, 
     deliveryCost, 
     items, 
@@ -72,7 +71,6 @@ export function sendOrderToWhatsApp(orderData: OrderData): void {
   message += `• Entrega (${deliveryZone}): +$${deliveryCost} CUP\n`;
   message += `• *TOTAL: $${total} CUP*\n\n`;
   
-  message += `💳 *Forma de Pago:* ${paymentMethod === 'transfer' ? 'Transferencia Bancaria' : 'Efectivo'}\n`;
   message += `📍 *Zona de Entrega:* ${deliveryZone}\n\n`;
   
   message += `📱 *Enviado desde:* TV a la Carta App\n`;
