@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { X, User, Phone, MapPin, Copy, RefreshCw, AlertTriangle, CheckCircle, CreditCard } from 'lucide-react';
-
-interface CheckoutModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: (orderData: OrderData) => void;
-}
+import React, { useState } from 'react';
+import { X, User, MapPin, Phone, Copy, Check, MessageCircle, Calculator, DollarSign, CreditCard } from 'lucide-react';
 
 export interface CustomerInfo {
   fullName: string;
-  idCard?: string;
-  email: string;
   phone: string;
   address: string;
 }
@@ -24,666 +16,455 @@ export interface OrderData {
   subtotal: number;
   transferFee: number;
   total: number;
+  cashTotal?: number;
+  transferTotal?: number;
 }
 
-// Datos completos de Cuba con provincias, municipios y barrios
-const cubaLocations = {
-  'Pinar del Río': {
-    'Consolación del Sur': ['Centro', 'La Palma', 'Alonso de Rojas'],
-    'Guane': ['Centro', 'Cortés', 'Hato del Medio'],
-    'La Palma': ['Centro', 'Las Ovas', 'Pueblo Nuevo'],
-    'Los Palacios': ['Centro', 'Paso Real de San Diego', 'Río Hondo'],
-    'Mantua': ['Centro', 'Guayabo', 'Santa Lucía'],
-    'Minas de Matahambre': ['Centro', 'Sumidero', 'Santa Teresa'],
-    'Pinar del Río': ['Centro', 'Briones Montoto', 'Ceferino Fernández', 'Hermanos Cruz'],
-    'San Juan y Martínez': ['Centro', 'Juan González', 'Punta de Cartas'],
-    'San Luis': ['Centro', 'Descanso', 'Portales'],
-    'Sandino': ['Centro', 'La Fe', 'Entronque de Herradura'],
-    'Viñales': ['Centro', 'Puerto Esperanza', 'La Palma']
-  },
-  'Artemisa': {
-    'Alquízar': ['Centro', 'Pueblo Nuevo', 'Hoyo Colorado'],
-    'Artemisa': ['Centro', 'Las Cañas', 'Pueblo Nuevo'],
-    'Bauta': ['Centro', 'Cangrejeras', 'El Cano'],
-    'Caimito': ['Centro', 'Guatao', 'Pueblo Nuevo'],
-    'Guanajay': ['Centro', 'Vereda Nueva', 'Cayajabos'],
-    'Güira de Melena': ['Centro', 'El Rosario', 'Pueblo Nuevo'],
-    'Mariel': ['Centro', 'Cabañas', 'Pueblo Nuevo'],
-    'San Antonio de los Baños': ['Centro', 'Ariguanabo', 'Pueblo Nuevo'],
-    'San Cristóbal': ['Centro', 'Los Palacios', 'Candelaria'],
-    'Bahía Honda': ['Centro', 'Mulata', 'Pueblo Nuevo'],
-    'Candelaria': ['Centro', 'Artemisa', 'Pueblo Nuevo']
-  },
-  'La Habana': {
-    'Arroyo Naranjo': ['Víbora Park', 'Los Pinos', 'Poey', 'Mantilla', 'Párraga'],
-    'Boyeros': ['Santiago de las Vegas', 'Wajay', 'Calabazar', 'Altahabana'],
-    'Centro Habana': ['Cayo Hueso', 'Los Sitios', 'Pueblo Nuevo', 'Dragones'],
-    'Cerro': ['Cerro', 'Palatino', 'Pilar', 'Latinoamericano'],
-    'Cotorro': ['Cotorro', 'San Pedro', 'Lotería'],
-    'Diez de Octubre': ['Luyanó', 'Jesús del Monte', 'Lawton', 'Santos Suárez'],
-    'Guanabacoa': ['Guanabacoa', 'Minas', 'Campo Florido', 'Peñas Altas'],
-    'Habana del Este': ['Alamar', 'Guanabo', 'Cojímar', 'Campo Florido'],
-    'Habana Vieja': ['Habana Vieja', 'Tallapiedra', 'Jesús María', 'San Isidro'],
-    'La Lisa': ['La Lisa', 'Alturas de La Lisa', 'Versalles'],
-    'Marianao': ['Marianao', 'Pocito', 'Libertad', 'Carlos III'],
-    'Playa': ['Miramar', 'Siboney', 'Atabey', 'Buena Vista'],
-    'Plaza de la Revolución': ['Vedado', 'Nuevo Vedado', 'Plaza', 'Rampa'],
-    'Regla': ['Regla', 'Loma Modelo', 'Electroquímica'],
-    'San Miguel del Padrón': ['San Miguel', 'Diezmero', 'Rocafort']
-  },
-  'Mayabeque': {
-    'Batabanó': ['Centro', 'Surgidero de Batabanó', 'Pueblo Nuevo'],
-    'Bejucal': ['Centro', 'Pueblo Nuevo', 'San José'],
-    'Güines': ['Centro', 'Catalina de Güines', 'Pueblo Nuevo'],
-    'Jaruco': ['Centro', 'Casiguas', 'Pueblo Nuevo'],
-    'Madruga': ['Centro', 'Pueblo Nuevo', 'San José'],
-    'Melena del Sur': ['Centro', 'Pueblo Nuevo', 'Ceiba del Agua'],
-    'Nueva Paz': ['Centro', 'Pueblo Nuevo', 'San José'],
-    'Quivicán': ['Centro', 'Pueblo Nuevo', 'San Antonio'],
-    'San José de las Lajas': ['Centro', 'Pueblo Nuevo', 'Tapaste'],
-    'San Nicolás': ['Centro', 'Pueblo Nuevo', 'Palos'],
-    'Santa Cruz del Norte': ['Centro', 'Jibacoa', 'Pueblo Nuevo']
-  },
-  'Matanzas': {
-    'Calimete': ['Centro', 'Navajas', 'Pueblo Nuevo'],
-    'Cárdenas': ['Centro', 'Varadero', 'Cantel'],
-    'Ciénaga de Zapata': ['Australia', 'Playa Larga', 'Jagüey Grande'],
-    'Colón': ['Centro', 'Perico', 'Pueblo Nuevo'],
-    'Jagüey Grande': ['Centro', 'Australia', 'Pueblo Nuevo'],
-    'Jovellanos': ['Centro', 'Pedro Betancourt', 'Pueblo Nuevo'],
-    'Limonar': ['Centro', 'Pueblo Nuevo', 'San José'],
-    'Los Arabos': ['Centro', 'Pueblo Nuevo', 'Sabanilla'],
-    'Martí': ['Centro', 'Pueblo Nuevo', 'Máximo Gómez'],
-    'Matanzas': ['Centro', 'Versalles', 'Pueblo Nuevo', 'Simpson'],
-    'Pedro Betancourt': ['Centro', 'Pueblo Nuevo', 'Unión de Reyes'],
-    'Perico': ['Centro', 'Pueblo Nuevo', 'Colón'],
-    'Unión de Reyes': ['Centro', 'Pueblo Nuevo', 'Alacranes']
-  },
-  'Villa Clara': {
-    'Caibarién': ['Centro', 'Remedios', 'Pueblo Nuevo'],
-    'Camajuaní': ['Centro', 'Vueltas', 'Pueblo Nuevo'],
-    'Cifuentes': ['Centro', 'Pueblo Nuevo', 'Santo Domingo'],
-    'Corralillo': ['Centro', 'Pueblo Nuevo', 'Sagua la Grande'],
-    'Encrucijada': ['Centro', 'Pueblo Nuevo', 'Camajuaní'],
-    'Manicaragua': ['Centro', 'Pueblo Nuevo', 'Jibacoa'],
-    'Placetas': ['Centro', 'Pueblo Nuevo', 'Camajuaní'],
-    'Quemado de Güines': ['Centro', 'Pueblo Nuevo', 'Sagua la Grande'],
-    'Ranchuelo': ['Centro', 'Pueblo Nuevo', 'Manicaragua'],
-    'Remedios': ['Centro', 'Caibarién', 'Pueblo Nuevo'],
-    'Sagua la Grande': ['Centro', 'Quemado de Güines', 'Pueblo Nuevo'],
-    'San Juan de los Remedios': ['Centro', 'Pueblo Nuevo', 'Caibarién'],
-    'Santa Clara': ['Centro', 'Condado', 'José Martí', 'Chiqui Gómez', 'Virginia']
-  },
-  'Cienfuegos': {
-    'Abreus': ['Centro', 'Pueblo Nuevo', 'Jagua'],
-    'Aguada de Pasajeros': ['Centro', 'Pueblo Nuevo', 'Rodas'],
-    'Cienfuegos': ['Centro', 'Punta Gorda', 'Pueblo Nuevo', 'Reina'],
-    'Cruces': ['Centro', 'Pueblo Nuevo', 'Lajas'],
-    'Cumanayagua': ['Centro', 'Pueblo Nuevo', 'El Nicho'],
-    'Lajas': ['Centro', 'Pueblo Nuevo', 'Cruces'],
-    'Palmira': ['Centro', 'Pueblo Nuevo', 'Cienfuegos'],
-    'Rodas': ['Centro', 'Pueblo Nuevo', 'Aguada de Pasajeros']
-  },
-  'Sancti Spíritus': {
-    'Cabaiguán': ['Centro', 'Pueblo Nuevo', 'Jatibonico'],
-    'Fomento': ['Centro', 'Pueblo Nuevo', 'Trinidad'],
-    'Jatibonico': ['Centro', 'Pueblo Nuevo', 'Cabaiguán'],
-    'La Sierpe': ['Centro', 'Pueblo Nuevo', 'Sancti Spíritus'],
-    'Sancti Spíritus': ['Centro', 'Jesús Menéndez', 'Pueblo Nuevo'],
-    'Taguasco': ['Centro', 'Pueblo Nuevo', 'Cabaiguán'],
-    'Trinidad': ['Centro', 'Casilda', 'Pueblo Nuevo'],
-    'Yaguajay': ['Centro', 'Pueblo Nuevo', 'Mayajigua']
-  },
-  'Ciego de Ávila': {
-    'Baraguá': ['Centro', 'Pueblo Nuevo', 'Jucaro'],
-    'Bolivia': ['Centro', 'Pueblo Nuevo', 'Primero de Enero'],
-    'Chambas': ['Centro', 'Pueblo Nuevo', 'Morón'],
-    'Ciego de Ávila': ['Centro', 'José Martí', 'Pueblo Nuevo'],
-    'Ciro Redondo': ['Centro', 'Pueblo Nuevo', 'Ciego de Ávila'],
-    'Florencia': ['Centro', 'Pueblo Nuevo', 'Majagua'],
-    'Majagua': ['Centro', 'Pueblo Nuevo', 'Ciego de Ávila'],
-    'Morón': ['Centro', 'Pueblo Nuevo', 'Chambas'],
-    'Primero de Enero': ['Centro', 'Pueblo Nuevo', 'Bolivia'],
-    'Venezuela': ['Centro', 'Pueblo Nuevo', 'Baraguá']
-  },
-  'Camagüey': {
-    'Camagüey': ['Centro', 'La Caridad', 'Pueblo Nuevo', 'Vista Hermosa'],
-    'Carlos Manuel de Céspedes': ['Centro', 'Pueblo Nuevo', 'Camagüey'],
-    'Esmeralda': ['Centro', 'Pueblo Nuevo', 'Santa Cruz del Sur'],
-    'Florida': ['Centro', 'Pueblo Nuevo', 'Camagüey'],
-    'Guáimaro': ['Centro', 'Pueblo Nuevo', 'Sibanicú'],
-    'Jimaguayú': ['Centro', 'Pueblo Nuevo', 'Sierra de Cubitas'],
-    'Minas': ['Centro', 'Pueblo Nuevo', 'Nuevitas'],
-    'Najasa': ['Centro', 'Pueblo Nuevo', 'Camagüey'],
-    'Nuevitas': ['Centro', 'Pueblo Nuevo', 'Minas'],
-    'Santa Cruz del Sur': ['Centro', 'Pueblo Nuevo', 'Esmeralda'],
-    'Sibanicú': ['Centro', 'Pueblo Nuevo', 'Camagüey'],
-    'Sierra de Cubitas': ['Centro', 'Pueblo Nuevo', 'Minas'],
-    'Vertientes': ['Centro', 'Pueblo Nuevo', 'Camagüey']
-  },
-  'Las Tunas': {
-    'Amancio': ['Centro', 'Pueblo Nuevo', 'Las Tunas'],
-    'Colombia': ['Centro', 'Pueblo Nuevo', 'Jobabo'],
-    'Jesús Menéndez': ['Centro', 'Pueblo Nuevo', 'Manatí'],
-    'Jobabo': ['Centro', 'Pueblo Nuevo', 'Colombia'],
-    'Las Tunas': ['Centro', 'Aurora', 'Pueblo Nuevo'],
-    'Majibacoa': ['Centro', 'Pueblo Nuevo', 'Las Tunas'],
-    'Manatí': ['Centro', 'Pueblo Nuevo', 'Puerto Padre'],
-    'Puerto Padre': ['Centro', 'Pueblo Nuevo', 'Jesús Menéndez']
-  },
-  'Holguín': {
-    'Antilla': ['Centro', 'Pueblo Nuevo', 'Banes'],
-    'Báguanos': ['Centro', 'Pueblo Nuevo', 'Holguín'],
-    'Banes': ['Centro', 'Pueblo Nuevo', 'Antilla'],
-    'Cacocum': ['Centro', 'Pueblo Nuevo', 'Holguín'],
-    'Calixto García': ['Centro', 'Pueblo Nuevo', 'Holguín'],
-    'Cueto': ['Centro', 'Pueblo Nuevo', 'Mayarí'],
-    'Frank País': ['Centro', 'Pueblo Nuevo', 'Sagua de Tánamo'],
-    'Gibara': ['Centro', 'Pueblo Nuevo', 'Holguín'],
-    'Holguín': ['Centro', 'El Llano', 'Pueblo Nuevo', 'Vista Alegre'],
-    'Mayarí': ['Centro', 'Pueblo Nuevo', 'Cueto'],
-    'Moa': ['Centro', 'Pueblo Nuevo', 'Sagua de Tánamo'],
-    'Rafael Freyre': ['Centro', 'Pueblo Nuevo', 'Banes'],
-    'Sagua de Tánamo': ['Centro', 'Pueblo Nuevo', 'Frank País'],
-    'Urbano Noris': ['Centro', 'Pueblo Nuevo', 'Holguín']
-  },
-  'Granma': {
-    'Bartolomé Masó': ['Centro', 'Pueblo Nuevo', 'Yara'],
-    'Bayamo': ['Centro', 'Pueblo Nuevo', 'José Martí'],
-    'Buey Arriba': ['Centro', 'Pueblo Nuevo', 'Yara'],
-    'Campechuela': ['Centro', 'Pueblo Nuevo', 'Niquero'],
-    'Cauto Cristo': ['Centro', 'Pueblo Nuevo', 'Jiguaní'],
-    'Guisa': ['Centro', 'Pueblo Nuevo', 'Bayamo'],
-    'Jiguaní': ['Centro', 'Pueblo Nuevo', 'Bayamo'],
-    'Manzanillo': ['Centro', 'Pueblo Nuevo', 'Campechuela'],
-    'Media Luna': ['Centro', 'Pueblo Nuevo', 'Niquero'],
-    'Niquero': ['Centro', 'Pueblo Nuevo', 'Campechuela'],
-    'Pilón': ['Centro', 'Pueblo Nuevo', 'Niquero'],
-    'Río Cauto': ['Centro', 'Pueblo Nuevo', 'Cauto Cristo'],
-    'Yara': ['Centro', 'Pueblo Nuevo', 'Bayamo']
-  },
-  'Santiago de Cuba': {
-    'Contramaestre': ['Centro', 'Pueblo Nuevo', 'Palma Soriano'],
-    'Guamá': ['Centro', 'Pueblo Nuevo', 'Chivirico'],
-    'Mella': ['Centro', 'Pueblo Nuevo', 'San Luis'],
-    'Palma Soriano': ['Centro', 'Pueblo Nuevo', 'Contramaestre'],
-    'San Luis': ['Centro', 'Pueblo Nuevo', 'Santiago de Cuba'],
-    'Santiago de Cuba': [
-      // Barrios del centro histórico
-      'Centro Histórico', 'Catedral', 'Plaza de Armas', 'San Francisco',
-      // Barrios tradicionales
-      'Vista Alegre', 'Sueño', 'Los Olmos', 'Altamira', 'Ampliación de Terrazas',
-      'Chicharrones', 'Flores', 'Guilera', 'José Martí', 'Mariana Grajales',
-      'Micro 70', 'Micro 9', 'Micro Distrito José Martí', 'Nuevo Vista Alegre',
-      'Reparto Sueño', 'Santa Bárbara', 'Terrazas', 'Villa Alegre',
-      // Barrios periféricos
-      'Abel Santamaría', 'Antonio Maceo', 'Boniato', 'Caney', 'Ciudamar',
-      'El Cobre', 'Ferreiro', 'Jutaí', 'La Maya', 'Leyte Vidal',
-      'Los Pinos', 'Micro Distrito Abel Santamaría', 'Micro Distrito Antonio Maceo',
-      'Micro Distrito Camilo Cienfuegos', 'Micro Distrito Frank País',
-      'Micro Distrito Patricio Lumumba', 'Micro Distrito René Ramos Latour',
-      'Micro Distrito Siboney', 'Micro Distrito Versalles', 'Nuevo Caney',
-      'Nuevo Versalles', 'Palma', 'Paraíso', 'Pastorita', 'Puerto Boniato',
-      'Quintero', 'Reparto Flores', 'Reparto Micro', 'Reparto Oriente',
-      'Reparto Patricio Lumumba', 'Reparto Siboney', 'Reparto Versalles',
-      'San Agustín', 'San Pedrito', 'Siboney', 'Sorribe', 'Versalles'
-    ],
-    'Segundo Frente': ['Centro', 'Pueblo Nuevo', 'Mayarí Arriba'],
-    'Songo-La Maya': ['Centro', 'Pueblo Nuevo', 'Santiago de Cuba'],
-    'Tercero Frente': ['Centro', 'Pueblo Nuevo', 'Cruce de los Baños']
-  },
-  'Guantánamo': {
-    'Baracoa': ['Centro', 'Pueblo Nuevo', 'Maisí'],
-    'Caimanera': ['Centro', 'Pueblo Nuevo', 'Guantánamo'],
-    'El Salvador': ['Centro', 'Pueblo Nuevo', 'Guantánamo'],
-    'Guantánamo': ['Centro', 'Pueblo Nuevo', 'Jamaica'],
-    'Imías': ['Centro', 'Pueblo Nuevo', 'Maisí'],
-    'Maisí': ['Centro', 'Pueblo Nuevo', 'Baracoa'],
-    'Manuel Tames': ['Centro', 'Pueblo Nuevo', 'Yateras'],
-    'Niceto Pérez': ['Centro', 'Pueblo Nuevo', 'Guantánamo'],
-    'San Antonio del Sur': ['Centro', 'Pueblo Nuevo', 'Imías'],
-    'Yateras': ['Centro', 'Pueblo Nuevo', 'Guantánamo']
-  },
-  'Isla de la Juventud': {
-    'Nueva Gerona': ['Centro', 'Pueblo Nuevo', 'Chacón', 'Micro I', 'Micro II', 'Micro III']
-  }
+interface CheckoutModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onCheckout: (orderData: OrderData) => void;
+  items: any[];
+  total: number;
+}
+
+// Zonas de entrega con costos
+const DELIVERY_ZONES = {
+  'Santiago de Cuba > Santiago de Cuba > Centro Histórico': 50,
+  'Santiago de Cuba > Santiago de Cuba > Vista Alegre': 60,
+  'Santiago de Cuba > Santiago de Cuba > Reparto Sueño': 70,
+  'Santiago de Cuba > Santiago de Cuba > Los Olmos': 80,
+  'Santiago de Cuba > Santiago de Cuba > Altamira': 90,
+  'Santiago de Cuba > Santiago de Cuba > San Pedrito': 100,
+  'Santiago de Cuba > Santiago de Cuba > Chicharrones': 110,
+  'Santiago de Cuba > Santiago de Cuba > Abel Santamaría': 120,
+  'Santiago de Cuba > Santiago de Cuba > José Martí': 130,
+  'Santiago de Cuba > Santiago de Cuba > 30 de Noviembre': 140,
+  'Santiago de Cuba > Santiago de Cuba > Seleccionar barrio': 0,
 };
 
-// Costos específicos para barrios de Santiago de Cuba
-const santiagoCosts = {
-  // Centro histórico - más caro por accesibilidad
-  'Centro Histórico': 150, 'Catedral': 150, 'Plaza de Armas': 150, 'San Francisco': 150,
-  
-  // Barrios tradicionales - costo medio
-  'Vista Alegre': 300, 'Sueño': 250, 'Los Olmos': 500, 'Altamira': 300, 
-  'Ampliación de Terrazas': 500, 'Chicharrones': 500, 'Flores': 500, 'Guilera': 300,
-  'José Martí': 100, 'Mariana Grajales': 150, 'Micro 7': 150, 'Micro 9': 150,
-  'Micro Distrito José Martí': 150, 'Nuevo Vista Alegre': 100, 'Reparto Sueño': 250,
-  'Santa Bárbara': 300, 'Terrazas': 300, 'Villa Alegre': 200,
-  
-  // Barrios periféricos - costo variable según distancia
-  'Abel Santamaría': 60, 'Antonio Maceo': 65, 'Boniato': 140, 'Caney': 50,
-  'Ciudamar': 180, 'El Cobre': 200, 'Ferreiro': 45, 'Jutaí': 55, 'La Maya': 160,
-  'Leyte Vidal': 70, 'Los Pinos': 75, 'Micro Distrito Abel Santamaría': 65,
-  'Micro Distrito Antonio Maceo': 70, 'Micro Distrito Camilo Cienfuegos': 60,
-  'Micro Distrito Frank País': 55, 'Micro Distrito Patricio Lumumba': 65,
-  'Micro Distrito René Ramos Latour': 70, 'Micro Distrito Siboney': 150,
-  'Micro Distrito Versalles': 80, 'Nuevo Caney': 55, 'Nuevo Versalles': 85,
-  'Palma': 170, 'Paraíso': 90, 'Pastorita': 100, 'Puerto Boniato': 145,
-  'Quintero': 85, 'Reparto Flores': 90, 'Reparto Micro': 75, 'Reparto Oriente': 80,
-  'Reparto Patricio Lumumba': 70, 'Reparto Siboney': 155, 'Reparto Versalles': 85,
-  'San Agustín': 95, 'San Pedrito': 105, 'Siboney': 1000, 'Sorribe': 110, 'Versalles': 80
-};
-
-export default function CheckoutModal({ isOpen, onClose, onConfirm }: CheckoutModalProps) {
+export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: CheckoutModalProps) {
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
     fullName: '',
-    idCard: '',
-    email: '',
     phone: '',
-    address: ''
+    address: '',
   });
   
-  const [selectedProvince, setSelectedProvince] = useState('');
-  const [selectedMunicipality, setSelectedMunicipality] = useState('');
-  const [selectedNeighborhood, setSelectedNeighborhood] = useState('');
-  const [deliveryCost, setDeliveryCost] = useState(0);
-  const [showNonSantiagoAlert, setShowNonSantiagoAlert] = useState(false);
+  const [deliveryZone, setDeliveryZone] = useState('Santiago de Cuba > Santiago de Cuba > Seleccionar barrio');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [orderId, setOrderId] = useState('');
-  const [showOrderCopied, setShowOrderCopied] = useState(false);
+  const [orderGenerated, setOrderGenerated] = useState(false);
+  const [generatedOrder, setGeneratedOrder] = useState('');
+  const [copied, setCopied] = useState(false);
 
-  // Generar ID de orden único
-  useEffect(() => {
-    if (isOpen) {
-      const newOrderId = `TVCart-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
-      setOrderId(newOrderId);
-    }
-  }, [isOpen]);
+  const deliveryCost = DELIVERY_ZONES[deliveryZone as keyof typeof DELIVERY_ZONES] || 0;
+  const finalTotal = total + deliveryCost;
 
-  // Manejar cambio de provincia
-  const handleProvinceChange = (province: string) => {
-    setSelectedProvince(province);
-    setSelectedMunicipality('');
-    setSelectedNeighborhood('');
-    setDeliveryCost(0);
-    setShowNonSantiagoAlert(false);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setCustomerInfo(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  // Manejar cambio de municipio
-  const handleMunicipalityChange = (municipality: string) => {
-    setSelectedMunicipality(municipality);
-    setSelectedNeighborhood('');
-    setDeliveryCost(0);
+  const generateOrderId = () => {
+    const timestamp = Date.now().toString(36);
+    const random = Math.random().toString(36).substr(2, 5);
+    return `TVC-${timestamp}-${random}`.toUpperCase();
+  };
+
+  const calculateTotals = () => {
+    const cashItems = items.filter(item => item.paymentType === 'cash');
+    const transferItems = items.filter(item => item.paymentType === 'transfer');
     
-    // Mostrar alerta si no es Santiago de Cuba
-    if (selectedProvince !== 'Santiago de Cuba' || municipality !== 'Santiago de Cuba') {
-      setShowNonSantiagoAlert(true);
-    } else {
-      setShowNonSantiagoAlert(false);
-    }
-  };
-
-  // Manejar cambio de barrio
-  const handleNeighborhoodChange = (neighborhood: string) => {
-    setSelectedNeighborhood(neighborhood);
+    const cashTotal = cashItems.reduce((sum, item) => {
+      const basePrice = item.type === 'movie' ? 80 : (item.selectedSeasons?.length || 1) * 300;
+      return sum + basePrice;
+    }, 0);
     
-    if (selectedProvince === 'Santiago de Cuba' && selectedMunicipality === 'Santiago de Cuba') {
-      const cost = santiagoCosts[neighborhood as keyof typeof santiagoCosts] || 100;
-      setDeliveryCost(cost);
-      setShowNonSantiagoAlert(false);
-    } else {
-      setDeliveryCost(0);
-      setShowNonSantiagoAlert(true);
-    }
+    const transferTotal = transferItems.reduce((sum, item) => {
+      const basePrice = item.type === 'movie' ? 80 : (item.selectedSeasons?.length || 1) * 300;
+      return sum + Math.round(basePrice * 1.1);
+    }, 0);
+    
+    return { cashTotal, transferTotal };
   };
 
-  // Copiar ID de orden
-  const copyOrderId = async () => {
+  const generateOrderText = () => {
+    const orderId = generateOrderId();
+    const { cashTotal, transferTotal } = calculateTotals();
+    const transferFee = transferTotal - items.filter(item => item.paymentType === 'transfer').reduce((sum, item) => {
+      const basePrice = item.type === 'movie' ? 80 : (item.selectedSeasons?.length || 1) * 300;
+      return sum + basePrice;
+    }, 0);
+
+    // Formatear lista de productos
+    const itemsList = items
+      .map(item => {
+        const seasonInfo = item.selectedSeasons && item.selectedSeasons.length > 0 
+          ? `\n  📺 Temporadas: ${item.selectedSeasons.sort((a, b) => a - b).join(', ')}` 
+          : '';
+        const itemType = item.type === 'movie' ? 'Película' : 'Serie';
+        const basePrice = item.type === 'movie' ? 80 : (item.selectedSeasons?.length || 1) * 300;
+        const finalPrice = item.paymentType === 'transfer' ? Math.round(basePrice * 1.1) : basePrice;
+        const paymentTypeText = item.paymentType === 'transfer' ? 'Transferencia (+10%)' : 'Efectivo';
+        const emoji = item.type === 'movie' ? '🎬' : '📺';
+        return `${emoji} *${item.title}*${seasonInfo}\n  📋 Tipo: ${itemType}\n  💳 Pago: ${paymentTypeText}\n  💰 Precio: $${finalPrice.toLocaleString()} CUP`;
+      })
+      .join('\n\n');
+
+    let orderText = `🎬 *PEDIDO - TV A LA CARTA*\n\n`;
+    orderText += `📋 *ID de Orden:* ${orderId}\n\n`;
+    
+    orderText += `👤 *DATOS DEL CLIENTE:*\n`;
+    orderText += `• Nombre: ${customerInfo.fullName}\n`;
+    orderText += `• Teléfono: ${customerInfo.phone}\n`;
+    orderText += `• Dirección: ${customerInfo.address}\n\n`;
+    
+    orderText += `🎯 *PRODUCTOS SOLICITADOS:*\n${itemsList}\n\n`;
+    
+    orderText += `💰 *RESUMEN DE COSTOS:*\n`;
+    
+    if (cashTotal > 0) {
+      orderText += `💵 Efectivo: $${cashTotal.toLocaleString()} CUP\n`;
+    }
+    if (transferTotal > 0) {
+      orderText += `🏦 Transferencia: $${transferTotal.toLocaleString()} CUP\n`;
+    }
+    orderText += `• *Subtotal Contenido: $${total.toLocaleString()} CUP*\n`;
+    
+    if (transferFee > 0) {
+      orderText += `• Recargo transferencia (10%): +$${transferFee.toLocaleString()} CUP\n`;
+    }
+    
+    orderText += `🚚 Entrega (${deliveryZone.split(' > ')[2]}): +$${deliveryCost.toLocaleString()} CUP\n`;
+    orderText += `\n🎯 *TOTAL FINAL: $${finalTotal.toLocaleString()} CUP*\n\n`;
+    
+    orderText += `📍 *ZONA DE ENTREGA:*\n`;
+    orderText += `${deliveryZone.replace(' > ', ' → ')}\n`;
+    orderText += `💰 Costo de entrega: $${deliveryCost.toLocaleString()} CUP\n\n`;
+    
+    orderText += `⏰ *Fecha:* ${new Date().toLocaleString('es-ES')}\n`;
+    orderText += `🌟 *¡Gracias por elegir TV a la Carta!*`;
+
+    return { orderText, orderId };
+  };
+
+  const handleGenerateOrder = () => {
+    const { orderText } = generateOrderText();
+    setGeneratedOrder(orderText);
+    setOrderGenerated(true);
+  };
+
+  const handleCopyOrder = async () => {
     try {
-      await navigator.clipboard.writeText(orderId);
-      setShowOrderCopied(true);
-      setTimeout(() => setShowOrderCopied(false), 2000);
+      await navigator.clipboard.writeText(generatedOrder);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Error copiando ID de orden:', err);
+      console.error('Error copying to clipboard:', err);
     }
-  };
-
-  // Regenerar ID de orden
-  const regenerateOrderId = () => {
-    const newOrderId = `TVCart-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
-    setOrderId(newOrderId);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (showNonSantiagoAlert) {
-      return; // No permitir envío si no es Santiago de Cuba
+    if (deliveryZone === 'Santiago de Cuba > Santiago de Cuba > Seleccionar barrio') {
+      alert('Por favor selecciona un barrio específico para la entrega.');
+      return;
     }
-    
+
     setIsProcessing(true);
-    
+
     try {
-      const deliveryZone = `${selectedProvince} > ${selectedMunicipality} > ${selectedNeighborhood}`;
-      
+      const { orderId } = generateOrderText();
+      const { cashTotal, transferTotal } = calculateTotals();
+      const transferFee = transferTotal - items.filter(item => item.paymentType === 'transfer').reduce((sum, item) => {
+        const basePrice = item.type === 'movie' ? 80 : (item.selectedSeasons?.length || 1) * 300;
+        return sum + basePrice;
+      }, 0);
+
       const orderData: OrderData = {
         orderId,
         customerInfo,
         deliveryZone,
         deliveryCost,
-        items: [],
-        subtotal: 0,
-        transferFee: 0,
-        total: 0
+        items,
+        subtotal: total,
+        transferFee,
+        total: finalTotal,
+        cashTotal,
+        transferTotal
       };
-      
-      await onConfirm(orderData);
-      onClose();
+
+      await onCheckout(orderData);
     } catch (error) {
-      console.error('Error en checkout:', error);
+      console.error('Checkout failed:', error);
     } finally {
       setIsProcessing(false);
     }
   };
 
-  const handleInputChange = (field: keyof CustomerInfo, value: string) => {
-    setCustomerInfo(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
-
   if (!isOpen) return null;
 
-  const municipalities = selectedProvince ? Object.keys(cubaLocations[selectedProvince as keyof typeof cubaLocations] || {}) : [];
-  const neighborhoods = selectedMunicipality && selectedProvince 
-    ? cubaLocations[selectedProvince as keyof typeof cubaLocations]?.[selectedMunicipality] || []
-    : [];
-
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[95vh] overflow-y-auto shadow-2xl">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4">
+      <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[95vh] overflow-hidden shadow-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white rounded-t-2xl">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 sm:p-6 text-white">
           <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-2xl font-bold flex items-center">
-                <CreditCard className="mr-3 h-7 w-7" />
-                Finalizar Pedido
-              </h2>
-              <p className="text-blue-100 mt-1">Complete sus datos para procesar el pedido</p>
+            <div className="flex items-center">
+              <div className="bg-white/20 p-2 rounded-lg mr-3">
+                <MessageCircle className="h-6 w-6" />
+              </div>
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold">Finalizar Pedido</h2>
+                <p className="text-sm opacity-90">Complete sus datos para procesar el pedido</p>
+              </div>
             </div>
             <button
               onClick={onClose}
-              className="text-white/80 hover:text-white hover:bg-white/20 p-2 rounded-full transition-all"
+              className="p-2 hover:bg-white/20 rounded-full transition-colors"
             >
-              <X className="w-6 h-6" />
+              <X className="h-6 w-6" />
             </button>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          {/* ID de Orden */}
-          <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold text-green-800 flex items-center">
-                <span className="mr-2">🎫</span>
-                ID de Orden
-              </h3>
-              <div className="flex space-x-2">
-                <button
-                  type="button"
-                  onClick={copyOrderId}
-                  className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg transition-colors"
-                  title="Copiar ID"
-                >
-                  <Copy className="h-4 w-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={regenerateOrderId}
-                  className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg transition-colors"
-                  title="Regenerar ID"
-                >
-                  <RefreshCw className="h-4 w-4" />
-                </button>
+        <div className="overflow-y-auto max-h-[calc(95vh-120px)]">
+          <div className="p-4 sm:p-6">
+            {/* Order Summary */}
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 mb-6 border border-blue-200">
+              <div className="flex items-center mb-4">
+                <Calculator className="h-6 w-6 text-blue-600 mr-3" />
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">Resumen del Pedido</h3>
               </div>
-            </div>
-            <div className="bg-white rounded-lg p-3 border border-green-300">
-              <code className="text-green-700 font-mono text-sm break-all">{orderId}</code>
-            </div>
-            {showOrderCopied && (
-              <div className="mt-2 flex items-center text-green-600 text-sm">
-                <CheckCircle className="h-4 w-4 mr-1" />
-                ID copiado al portapapeles
-              </div>
-            )}
-          </div>
-
-          {/* Información Personal */}
-          <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-              <User className="mr-2 h-5 w-5 text-blue-600" />
-              Información Personal
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Nombre Completo *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={customerInfo.fullName}
-                  onChange={(e) => handleInputChange('fullName', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Ingrese su nombre completo"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Carnet de Identidad
-                </label>
-                <input
-                  type="text"
-                  value={customerInfo.idCard || ''}
-                  onChange={(e) => handleInputChange('idCard', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Ej: 12345678901"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  <Phone className="w-4 h-4 inline mr-1" />
-                  Teléfono *
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={customerInfo.phone}
-                  onChange={(e) => handleInputChange('phone', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Ej: +53 5X XXX XXXX"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Correo Electrónico *
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={customerInfo.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="ejemplo@correo.com"
-                />
-              </div>
-            </div>
-
-            <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                <MapPin className="w-4 h-4 inline mr-1" />
-                Dirección Completa *
-              </label>
-              <textarea
-                required
-                value={customerInfo.address}
-                onChange={(e) => handleInputChange('address', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-                rows={3}
-                placeholder="Ingrese su dirección completa con referencias"
-              />
-            </div>
-          </div>
-
-          {/* Zona de Entrega */}
-          <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-              <MapPin className="mr-2 h-5 w-5 text-green-600" />
-              Zona de Entrega
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Provincia */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Provincia *
-                </label>
-                <select
-                  required
-                  value={selectedProvince}
-                  onChange={(e) => handleProvinceChange(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                >
-                  <option value="">Seleccionar provincia</option>
-                  {Object.keys(cubaLocations).map((province) => (
-                    <option key={province} value={province}>
-                      {province}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Municipio */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Municipio *
-                </label>
-                <select
-                  required
-                  value={selectedMunicipality}
-                  onChange={(e) => handleMunicipalityChange(e.target.value)}
-                  disabled={!selectedProvince}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
-                >
-                  <option value="">Seleccionar municipio</option>
-                  {municipalities.map((municipality) => (
-                    <option key={municipality} value={municipality}>
-                      {municipality}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Barrio */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Barrio/Zona *
-                </label>
-                <select
-                  required
-                  value={selectedNeighborhood}
-                  onChange={(e) => handleNeighborhoodChange(e.target.value)}
-                  disabled={!selectedMunicipality}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
-                >
-                  <option value="">Seleccionar barrio</option>
-                  {neighborhoods.map((neighborhood) => (
-                    <option key={neighborhood} value={neighborhood}>
-                      {neighborhood}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {/* Costo de entrega */}
-            {selectedNeighborhood && !showNonSantiagoAlert && (
-              <div className="mt-4 bg-green-50 rounded-lg p-4 border border-green-200">
-                <div className="flex items-center justify-between">
-                  <span className="text-green-700 font-medium">Costo de entrega:</span>
-                  <span className="text-2xl font-bold text-green-800">${deliveryCost} CUP</span>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div className="bg-white rounded-xl p-4 border border-gray-200">
+                  <div className="text-center">
+                    <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">
+                      ${total.toLocaleString()} CUP
+                    </div>
+                    <div className="text-sm text-gray-600">Subtotal Contenido</div>
+                    <div className="text-xs text-gray-500 mt-1">{items.length} elementos</div>
+                  </div>
                 </div>
-              </div>
-            )}
-
-            {/* Alerta para zonas fuera de Santiago de Cuba */}
-            {showNonSantiagoAlert && (
-              <div className="mt-4 bg-orange-50 rounded-lg p-4 border border-orange-200">
-                <div className="flex items-start">
-                  <AlertTriangle className="h-6 w-6 text-orange-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-orange-800 mb-2">
-                      Zona de Entrega No Disponible
-                    </h4>
-                    <p className="text-orange-700 mb-3">
-                      Actualmente solo realizamos entregas en Santiago de Cuba ciudad. 
-                      Para otras zonas, contacte directamente con nosotros para coordinar la entrega.
-                    </p>
-                    <div className="bg-white rounded-lg p-3 border border-orange-300">
-                      <p className="text-sm font-medium text-orange-800 mb-1">
-                        📱 Contacto para coordinación:
-                      </p>
-                      <p className="text-orange-700 font-mono">
-                        WhatsApp: +53 5469 0878
-                      </p>
-                      <p className="text-xs text-orange-600 mt-1">
-                        TV a la Carta - Entregas especiales
-                      </p>
+                
+                <div className="bg-white rounded-xl p-4 border border-gray-200">
+                  <div className="text-center">
+                    <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-2">
+                      ${deliveryCost.toLocaleString()} CUP
+                    </div>
+                    <div className="text-sm text-gray-600">Costo de Entrega</div>
+                    <div className="text-xs text-gray-500 mt-1">
+                      {deliveryZone.split(' > ')[2] || 'Seleccionar zona'}
                     </div>
                   </div>
                 </div>
               </div>
+
+              <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-xl p-4 border-2 border-green-300">
+                <div className="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+                  <span className="text-lg sm:text-xl font-bold text-gray-900">Total Final:</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-green-600">
+                    ${finalTotal.toLocaleString()} CUP
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {!orderGenerated ? (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Customer Information */}
+                <div className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-200 shadow-sm">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 flex items-center text-gray-900">
+                    <User className="h-5 w-5 mr-3 text-blue-600" />
+                    Información Personal
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="sm:col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Nombre Completo *
+                      </label>
+                      <input
+                        type="text"
+                        name="fullName"
+                        value={customerInfo.fullName}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="Ingrese su nombre completo"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Teléfono *
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={customerInfo.phone}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="+53 5XXXXXXX"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Dirección Completa *
+                      </label>
+                      <input
+                        type="text"
+                        name="address"
+                        value={customerInfo.address}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="Calle, número, entre calles..."
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Delivery Zone */}
+                <div className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-200 shadow-sm">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 flex items-center text-gray-900">
+                    <MapPin className="h-5 w-5 mr-3 text-green-600" />
+                    Zona de Entrega
+                  </h3>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Seleccionar Barrio/Zona *
+                    </label>
+                    <select
+                      value={deliveryZone}
+                      onChange={(e) => setDeliveryZone(e.target.value)}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all bg-white"
+                    >
+                      {Object.entries(DELIVERY_ZONES).map(([zone, cost]) => (
+                        <option key={zone} value={zone}>
+                          {zone.split(' > ')[2]} {cost > 0 && `- $${cost} CUP`}
+                        </option>
+                      ))}
+                    </select>
+                    {deliveryCost > 0 && (
+                      <div className="mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-green-700">
+                            Costo de entrega:
+                          </span>
+                          <span className="text-lg font-bold text-green-600">
+                            ${deliveryCost.toLocaleString()} CUP
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="flex-1 px-6 py-4 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all font-medium"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleGenerateOrder}
+                    className="flex-1 px-6 py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl transition-all font-medium"
+                  >
+                    Generar Orden
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isProcessing || deliveryZone === 'Santiago de Cuba > Santiago de Cuba > Seleccionar barrio'}
+                    className="flex-1 px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl transition-all font-medium flex items-center justify-center"
+                  >
+                    {isProcessing ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Procesando...
+                      </>
+                    ) : (
+                      <>
+                        <MessageCircle className="h-5 w-5 mr-2" />
+                        Enviar por WhatsApp
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            ) : (
+              /* Generated Order Display */
+              <div className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-200 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 space-y-2 sm:space-y-0">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center">
+                    <Check className="h-6 w-6 text-green-600 mr-3" />
+                    Orden Generada
+                  </h3>
+                  <button
+                    onClick={handleCopyOrder}
+                    className={`px-4 py-2 rounded-xl font-medium transition-all flex items-center justify-center ${
+                      copied
+                        ? 'bg-green-100 text-green-700 border border-green-300'
+                        : 'bg-blue-100 text-blue-700 border border-blue-300 hover:bg-blue-200'
+                    }`}
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="h-4 w-4 mr-2" />
+                        ¡Copiado!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-4 w-4 mr-2" />
+                        Copiar Orden
+                      </>
+                    )}
+                  </button>
+                </div>
+                
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 max-h-96 overflow-y-auto">
+                  <pre className="text-xs sm:text-sm text-gray-800 whitespace-pre-wrap font-mono leading-relaxed">
+                    {generatedOrder}
+                  </pre>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-3 mt-6">
+                  <button
+                    onClick={() => setOrderGenerated(false)}
+                    className="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all font-medium"
+                  >
+                    Volver a Editar
+                  </button>
+                  <button
+                    onClick={handleSubmit}
+                    disabled={isProcessing}
+                    className="flex-1 px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 disabled:opacity-50 text-white rounded-xl transition-all font-medium flex items-center justify-center"
+                  >
+                    {isProcessing ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Enviando...
+                      </>
+                    ) : (
+                      <>
+                        <MessageCircle className="h-5 w-5 mr-2" />
+                        Enviar por WhatsApp
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
             )}
           </div>
-
-          {/* Botones de acción */}
-          <div className="flex gap-4 pt-4 border-t border-gray-200">
-            <button
-              type="button"
-              onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-            >
-              Cancelar
-            </button>
-            <button
-              type="submit"
-              disabled={isProcessing || showNonSantiagoAlert}
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-medium flex items-center justify-center"
-            >
-              {isProcessing ? (
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-              ) : (
-                <CreditCard className="w-5 h-5 mr-2" />
-              )}
-              {isProcessing ? 'Procesando...' : 'Finalizar Pedido'}
-            </button>
-          </div>
-
-          {/* Información adicional */}
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-            <p className="text-sm text-blue-700 text-center flex items-center justify-center">
-              <span className="mr-2">🔒</span>
-              Sus datos están seguros y solo se utilizarán para procesar su pedido
-            </p>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   );
