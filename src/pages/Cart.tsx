@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ShoppingCart, Trash2, Star, Calendar, MessageCircle, ArrowLeft, Edit3, Tv, DollarSign, CreditCard } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { PriceCard } from '../components/PriceCard';
-import { CheckoutModal, OrderData } from '../components/CheckoutModal';
+import CheckoutModal, { OrderData } from '../components/CheckoutModal';
 import { sendOrderToWhatsApp } from '../utils/whatsapp';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../config/api';
 
