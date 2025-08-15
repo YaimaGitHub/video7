@@ -92,8 +92,38 @@ export function TVDetail() {
     setSelectedSeasons([]);
   };
 
+  // Determinar si el botón debe estar habilitado
+  const isAddToCartEnabled = () => {
+    if (!tvShow) return false;
+    
+    // Si solo tiene una temporada (excluyendo especiales), habilitar automáticamente
+    const validSeasons = tvShow.seasons.filter(season => season.season_number > 0);
+    if (validSeasons.length === 1) {
+      // Auto-seleccionar la única temporada si no hay ninguna seleccionada
+      if (selectedSeasons.length === 0) {
+        setSelectedSeasons([validSeasons[0].season_number]);
+      }
+      return true;
+    }
+    
+    // Si tiene múltiples temporadas, requiere selección manual
+    return selectedSeasons.length > 0;
+  };
+
   const handleCartAction = () => {
     if (!tvShow) return;
+
+    // Si no hay temporadas seleccionadas y hay múltiples temporadas, no permitir agregar
+    const validSeasons = tvShow.seasons.filter(season => season.season_number > 0);
+    if (validSeasons.length > 1 && selectedSeasons.length === 0) {
+      alert('Por favor selecciona al menos una temporada antes de agregar al carrito.');
+      return;
+    }
+
+    // Si solo hay una temporada y no está seleccionada, seleccionarla automáticamente
+    if (validSeasons.length === 1 && selectedSeasons.length === 0) {
+      setSelectedSeasons([validSeasons[0].season_number]);
+    }
 
     const cartItem: CartItem & { selectedSeasons?: number[] } = {
       id: tvShow.id,
@@ -102,7 +132,7 @@ export function TVDetail() {
       type: 'tv',
       first_air_date: tvShow.first_air_date,
       vote_average: tvShow.vote_average,
-      selectedSeasons: selectedSeasons.length > 0 ? selectedSeasons : undefined,
+      selectedSeasons: selectedSeasons.length > 0 ? selectedSeasons : (validSeasons.length === 1 ? [validSeasons[0].season_number] : undefined),
     };
 
     if (inCart) {
@@ -125,6 +155,16 @@ export function TVDetail() {
     }
   }, [selectedSeasons, inCart]);
 
+  // Auto-seleccionar la única temporada si solo hay una
+  useEffect(() => {
+    if (tvShow && !inCart) {
+      const validSeasons = tvShow.seasons.filter(season => season.season_number > 0);
+      if (validSeasons.length === 1 && selectedSeasons.length === 0) {
+        setSelectedSeasons([validSeasons[0].season_number]);
+      }
+    }
+  }, [tvShow, inCart, selectedSeasons.length]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
@@ -144,6 +184,9 @@ export function TVDetail() {
   const backdropUrl = tvShow.backdrop_path
     ? `${IMAGE_BASE_URL}/${BACKDROP_SIZE}${tvShow.backdrop_path}`
     : 'https://images.unsplash.com/photo-1489599843253-c76cc4bcb8cf?w=1280&h=720&fit=crop&crop=center';
+
+  const validSeasons = tvShow.seasons.filter(season => season.season_number > 0);
+  const hasMultipleSeasons = validSeasons.length > 1;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -298,7 +341,7 @@ export function TVDetail() {
               
               <div className="p-6">
               {/* Season Selection */}
-              {tvShow.seasons && tvShow.seasons.filter(s => s.season_number > 0).length > 1 && (
+              {hasMultipleSeasons && (
                 <div className="mb-8">
                   <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-100 mb-4">
                     <div className="flex items-center mb-2">
@@ -344,8 +387,7 @@ export function TVDetail() {
                           Ninguna
                         </button>
                       </div>
-                      {tvShow.seasons
-                        .filter(season => season.season_number > 0)
+                      {validSeasons
                         .map((season) => (
                           <label
                             key={season.id}
@@ -373,18 +415,50 @@ export function TVDetail() {
                 </div>
               )}
 
+              {/* Mostrar información de temporada única */}
+              {!hasMultipleSeasons && validSeasons.length === 1 && (
+                <div className="mb-6">
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 border border-green-200">
+                    <div className="flex items-center mb-2">
+                      <div className="bg-green-100 p-2 rounded-lg mr-3">
+                        <span className="text-sm">✅</span>
+                      </div>
+                      <h4 className="font-semibold text-green-900">Temporada Única</h4>
+                    </div>
+                    <p className="text-sm text-green-700 ml-11 mb-3">
+                      Esta serie tiene una sola temporada que se incluirá automáticamente
+                    </p>
+                    <div className="ml-11 bg-white rounded-lg p-3 border border-green-200">
+                      <p className="font-medium text-gray-900">{validSeasons[0].name}</p>
+                      <p className="text-sm text-gray-600">
+                        {validSeasons[0].episode_count} episodios
+                        {validSeasons[0].air_date && ` • ${new Date(validSeasons[0].air_date).getFullYear()}`}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <button
                 onClick={handleCartAction}
-                className={`w-full mb-6 px-6 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center transform hover:scale-105 hover:shadow-lg ${
-                  inCart
-                    ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white'
-                    : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white'
+                disabled={!isAddToCartEnabled()}
+                className={`w-full mb-6 px-6 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center transform ${
+                  !isAddToCartEnabled()
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : inCart
+                      ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white hover:scale-105 hover:shadow-lg'
+                      : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white hover:scale-105 hover:shadow-lg'
                 }`}
               >
                 {inCart ? (
                   <>
                     <X className="mr-2 h-5 w-5" />
                     Retirar del Carrito
+                  </>
+                ) : !isAddToCartEnabled() && hasMultipleSeasons ? (
+                  <>
+                    <Plus className="mr-2 h-5 w-5" />
+                    Selecciona Temporadas
                   </>
                 ) : (
                   <>
@@ -393,6 +467,15 @@ export function TVDetail() {
                   </>
                 )}
               </button>
+
+              {/* Mensaje de ayuda para selección de temporadas */}
+              {!isAddToCartEnabled() && hasMultipleSeasons && (
+                <div className="mb-6 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-sm text-yellow-700 text-center">
+                    ⚠️ Selecciona al menos una temporada para agregar al carrito
+                  </p>
+                </div>
+              )}
 
               {/* Price Card */}
               <div className="mb-6">

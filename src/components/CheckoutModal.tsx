@@ -59,6 +59,11 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
   const deliveryCost = DELIVERY_ZONES[deliveryZone as keyof typeof DELIVERY_ZONES] || 0;
   const finalTotal = total + deliveryCost;
 
+  // Validar si todos los campos requeridos están completos
+  const isFormValid = customerInfo.fullName.trim() !== '' && 
+                     customerInfo.phone.trim() !== '' && 
+                     customerInfo.address.trim() !== '';
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setCustomerInfo(prev => ({
@@ -151,6 +156,11 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
   };
 
   const handleGenerateOrder = () => {
+    if (!isFormValid) {
+      alert('Por favor complete todos los campos requeridos antes de generar la orden.');
+      return;
+    }
+    
     const { orderText } = generateOrderText();
     setGeneratedOrder(orderText);
     setOrderGenerated(true);
@@ -377,7 +387,12 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
                   <button
                     type="button"
                     onClick={handleGenerateOrder}
-                    className="flex-1 px-6 py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl transition-all font-medium"
+                    disabled={!isFormValid}
+                    className={`flex-1 px-6 py-4 rounded-xl transition-all font-medium ${
+                      isFormValid
+                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white'
+                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    }`}
                   >
                     Generar Orden
                   </button>
