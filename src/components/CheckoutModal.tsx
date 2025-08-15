@@ -59,10 +59,11 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
   const deliveryCost = DELIVERY_ZONES[deliveryZone as keyof typeof DELIVERY_ZONES] || 0;
   const finalTotal = total + deliveryCost;
 
-  // Validar si todos los campos requeridos están completos
+  // Validar si todos los campos requeridos están completos incluyendo la zona de entrega
   const isFormValid = customerInfo.fullName.trim() !== '' && 
                      customerInfo.phone.trim() !== '' && 
-                     customerInfo.address.trim() !== '';
+                     customerInfo.address.trim() !== '' &&
+                     deliveryZone !== 'Santiago de Cuba > Santiago de Cuba > Seleccionar barrio';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -387,9 +388,9 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
                   <button
                     type="button"
                     onClick={handleGenerateOrder}
-                    disabled={!isFormValid}
+                    disabled={!isFormValid || deliveryZone === 'Santiago de Cuba > Santiago de Cuba > Seleccionar barrio'}
                     className={`flex-1 px-6 py-4 rounded-xl transition-all font-medium ${
-                      isFormValid
+                      isFormValid && deliveryZone !== 'Santiago de Cuba > Santiago de Cuba > Seleccionar barrio'
                         ? 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white'
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     }`}
@@ -398,7 +399,7 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
                   </button>
                   <button
                     type="submit"
-                    disabled={isProcessing || deliveryZone === 'Santiago de Cuba > Santiago de Cuba > Seleccionar barrio'}
+                    disabled={isProcessing || !isFormValid || deliveryZone === 'Santiago de Cuba > Santiago de Cuba > Seleccionar barrio'}
                     className="flex-1 px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl transition-all font-medium flex items-center justify-center"
                   >
                     {isProcessing ? (
@@ -460,7 +461,7 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
                   </button>
                   <button
                     onClick={handleSubmit}
-                    disabled={isProcessing}
+                    disabled={isProcessing || !isFormValid}
                     className="flex-1 px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 disabled:opacity-50 text-white rounded-xl transition-all font-medium flex items-center justify-center"
                   >
                     {isProcessing ? (
