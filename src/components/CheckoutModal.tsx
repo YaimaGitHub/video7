@@ -30,7 +30,7 @@ interface CheckoutModalProps {
 
 // Zonas de entrega con costos
 const DELIVERY_ZONES = {
-  'Santiago de Cuba > Santiago de Cuba > Seleccione el Barrio/Zona':,
+  'Santiago de Cuba > Santiago de Cuba > Nuevo Vista Alegre': 100,
   'Santiago de Cuba > Santiago de Cuba > Vista Alegre': 300,
   'Santiago de Cuba > Santiago de Cuba > Reparto Sueño': 250,
   'Santiago de Cuba > Santiago de Cuba > San Pedrito': 150,
@@ -52,7 +52,6 @@ const DELIVERY_ZONES = {
   'Santiago de Cuba > Santiago de Cuba > Cobre': 800,
   'Santiago de Cuba > Santiago de Cuba > El Parque Céspedes': 200,
   'Santiago de Cuba > Santiago de Cuba > Carretera del Morro': 300,
-  'Santiago de Cuba > Santiago de Cuba > Nuevo Vista Alegre': 300,
 
 };
 
