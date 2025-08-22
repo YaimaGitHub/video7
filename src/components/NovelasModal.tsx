@@ -35,7 +35,7 @@ export function NovelasModal({ isOpen, onClose }: NovelasModalProps) {
   
   // Base novels list
   const defaultNovelas: Novela[] = [
-    { id: 1, titulo: "¿Quién mató a Sara?", genero: "Drama/Policial,", capitulos: 25, año: 2021 },   
+    { id: 1, titulo: "¿Quién mató a Sara?", genero: "Drama/Policial", capitulos: 25, año: 2021 },   
   ];
 
   // Combine admin novels with default novels - real-time sync
