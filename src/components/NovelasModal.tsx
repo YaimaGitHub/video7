@@ -35,22 +35,7 @@ export function NovelasModal({ isOpen, onClose }: NovelasModalProps) {
   
   // Current novels catalog - Synchronized: 2025-08-22T13:52:26.365Z
   const defaultNovelas: Novela[] = [
-    {
-        "id": 1755870628221,
-        "titulo": "Aile: lazos de pasión",
-        "genero": "Drama",
-        "capitulos": 25,
-        "año": 2023,
-        "descripcion": ""
-    },
-    {
-        "id": 1755870738708,
-        "titulo": "Alias el Mexicano",
-        "genero": "Drama",
-        "capitulos": 78,
-        "año": 2013,
-        "descripcion": ""
-    }
+   
 ];
 
   // Combine admin novels with default novels - real-time sync
