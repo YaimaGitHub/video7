@@ -25,8 +25,6 @@ Total de novelas: 2
 Novelas activas: 2
 
 **Novelas en el catálogo:**
-- Aile: lazos de pasión (Drama, 25 cap., 2023) ✅
-- Alias el Mexicano (Drama, 78 cap., 2013) ✅
 
 ### Archivos del Sistema Exportados
 - **AdminContext.tsx**: Contexto principal de administración con configuraciones actuales
