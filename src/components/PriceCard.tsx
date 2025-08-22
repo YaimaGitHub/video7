@@ -2,13 +2,6 @@ import React from 'react';
 import { DollarSign, Tv, Film, Star, CreditCard } from 'lucide-react';
 import { AdminContext } from '../context/AdminContext';
 
-// Current pricing configuration - Synchronized: 2025-08-22T13:52:26.365Z
-const DEFAULT_PRICES = {
-  moviePrice: 80,
-  seriesPrice: 300,
-  transferFeePercentage: 10
-};
-
 interface PriceCardProps {
   type: 'movie' | 'tv';
   selectedSeasons?: number[];
@@ -19,10 +12,10 @@ interface PriceCardProps {
 export function PriceCard({ type, selectedSeasons = [], episodeCount = 0, isAnime = false }: PriceCardProps) {
   const adminContext = React.useContext(AdminContext);
   
-  // Get prices from admin context with real-time updates - SYNCHRONIZED
-  const moviePrice = adminContext?.state?.prices?.moviePrice || DEFAULT_PRICES.moviePrice;
-  const seriesPrice = adminContext?.state?.prices?.seriesPrice || DEFAULT_PRICES.seriesPrice;
-  const transferFeePercentage = adminContext?.state?.prices?.transferFeePercentage || DEFAULT_PRICES.transferFeePercentage;
+  // Get prices from admin context with real-time updates
+  const moviePrice = adminContext?.state?.prices?.moviePrice || 80;
+  const seriesPrice = adminContext?.state?.prices?.seriesPrice || 300;
+  const transferFeePercentage = adminContext?.state?.prices?.transferFeePercentage || 10;
   
   const calculatePrice = () => {
     if (type === 'movie') {

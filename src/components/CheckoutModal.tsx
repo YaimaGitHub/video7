@@ -29,31 +29,31 @@ interface CheckoutModalProps {
   total: number;
 }
 
-// Current delivery zones configuration - Synchronized: 2025-08-22T13:52:26.365Z
+// Base delivery zones - these will be combined with admin zones
 const BASE_DELIVERY_ZONES = {
-  "Por favor seleccionar su Barrio/Zona": 0,
-  "Santiago de Cuba > Santiago de Cuba > Nuevo Vista Alegre": 100,
-  "Santiago de Cuba > Santiago de Cuba > Vista Alegre": 300,
-  "Santiago de Cuba > Santiago de Cuba > Reparto Sueño": 250,
-  "Santiago de Cuba > Santiago de Cuba > San Pedrito": 150,
-  "Santiago de Cuba > Santiago de Cuba > Altamira": 300,
-  "Santiago de Cuba > Santiago de Cuba > Micro 7, 8 , 9": 150,
-  "Santiago de Cuba > Santiago de Cuba > Alameda": 150,
-  "Santiago de Cuba > Santiago de Cuba > El Caney": 800,
-  "Santiago de Cuba > Santiago de Cuba > Quintero": 200,
-  "Santiago de Cuba > Santiago de Cuba > Marimon": 100,
-  "Santiago de Cuba > Santiago de Cuba > Los cangrejitos": 150,
-  "Santiago de Cuba > Santiago de Cuba > Trocha": 200,
-  "Santiago de Cuba > Santiago de Cuba > Versalles": 800,
-  "Santiago de Cuba > Santiago de Cuba > Reparto Portuondo": 600,
-  "Santiago de Cuba > Santiago de Cuba > 30 de Noviembre": 600,
-  "Santiago de Cuba > Santiago de Cuba > Rajayoga": 800,
-  "Santiago de Cuba > Santiago de Cuba > Antonio Maceo": 600,
-  "Santiago de Cuba > Santiago de Cuba > Los Pinos": 200,
-  "Santiago de Cuba > Santiago de Cuba > Distrito José Martí": 100,
-  "Santiago de Cuba > Santiago de Cuba > Cobre": 800,
-  "Santiago de Cuba > Santiago de Cuba > El Parque Céspedes": 200,
-  "Santiago de Cuba > Santiago de Cuba > Carretera del Morro": 300
+  'Por favor seleccionar su Barrio/Zona': 0,
+  'Santiago de Cuba > Santiago de Cuba > Nuevo Vista Alegre': 100,
+  'Santiago de Cuba > Santiago de Cuba > Vista Alegre': 300,
+  'Santiago de Cuba > Santiago de Cuba > Reparto Sueño': 250,
+  'Santiago de Cuba > Santiago de Cuba > San Pedrito': 150,
+  'Santiago de Cuba > Santiago de Cuba > Altamira': 300,
+  'Santiago de Cuba > Santiago de Cuba > Micro 7, 8 , 9': 150,
+  'Santiago de Cuba > Santiago de Cuba > Alameda': 150,
+  'Santiago de Cuba > Santiago de Cuba > El Caney': 800,
+  'Santiago de Cuba > Santiago de Cuba > Quintero': 200,
+  'Santiago de Cuba > Santiago de Cuba > Marimon': 100,
+  'Santiago de Cuba > Santiago de Cuba > Los cangrejitos': 150,
+  'Santiago de Cuba > Santiago de Cuba > Trocha': 200,
+  'Santiago de Cuba > Santiago de Cuba > Versalles': 800,
+  'Santiago de Cuba > Santiago de Cuba > Reparto Portuondo': 600,
+  'Santiago de Cuba > Santiago de Cuba > 30 de Noviembre': 600,
+  'Santiago de Cuba > Santiago de Cuba > Rajayoga': 800,
+  'Santiago de Cuba > Santiago de Cuba > Antonio Maceo': 600,
+  'Santiago de Cuba > Santiago de Cuba > Los Pinos': 200,
+  'Santiago de Cuba > Santiago de Cuba > Distrito José Martí': 100,
+  'Santiago de Cuba > Santiago de Cuba > Cobre': 800,
+  'Santiago de Cuba > Santiago de Cuba > El Parque Céspedes': 200,
+  'Santiago de Cuba > Santiago de Cuba > Carretera del Morro': 300,
 };
 
 export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: CheckoutModalProps) {
@@ -82,7 +82,7 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
   const deliveryCost = allZones[deliveryZone as keyof typeof allZones] || 0;
   const finalTotal = total + deliveryCost;
 
-  // Get current transfer fee percentage with real-time updates - SYNCHRONIZED
+  // Get current transfer fee percentage with real-time updates
   const transferFeePercentage = adminContext?.state?.prices?.transferFeePercentage || 10;
 
   const isFormValid = customerInfo.fullName.trim() !== '' && 
@@ -108,7 +108,7 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
     const cashItems = items.filter(item => item.paymentType === 'cash');
     const transferItems = items.filter(item => item.paymentType === 'transfer');
     
-    // Get current prices with real-time updates - SYNCHRONIZED
+    // Get current prices with real-time updates
     const moviePrice = adminContext?.state?.prices?.moviePrice || 80;
     const seriesPrice = adminContext?.state?.prices?.seriesPrice || 300;
     
@@ -135,7 +135,7 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
       return sum + basePrice;
     }, 0);
 
-    // Format product list with real-time pricing - SYNCHRONIZED
+    // Format product list with real-time pricing
     const itemsList = items
       .map(item => {
         const seasonInfo = item.selectedSeasons && item.selectedSeasons.length > 0 
