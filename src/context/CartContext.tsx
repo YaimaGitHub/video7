@@ -3,6 +3,13 @@ import { Toast } from '../components/Toast';
 import { AdminContext } from './AdminContext';
 import type { CartItem } from '../types/movie';
 
+// Current pricing configuration - Synchronized: 2025-08-22T13:52:26.364Z
+const DEFAULT_PRICES = {
+  moviePrice: 80,
+  seriesPrice: 300,
+  transferFeePercentage: 10
+};
+
 interface SeriesCartItem extends CartItem {
   selectedSeasons?: number[];
   paymentType?: 'cash' | 'transfer';
@@ -199,10 +206,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const calculateItemPrice = (item: SeriesCartItem): number => {
-    // Get current prices from admin context with real-time updates
-    const moviePrice = adminContext?.state?.prices?.moviePrice || 80;
-    const seriesPrice = adminContext?.state?.prices?.seriesPrice || 300;
-    const transferFeePercentage = adminContext?.state?.prices?.transferFeePercentage || 10;
+    // Get current prices from admin context with real-time updates - SYNCHRONIZED
+    const moviePrice = adminContext?.state?.prices?.moviePrice || DEFAULT_PRICES.moviePrice;
+    const seriesPrice = adminContext?.state?.prices?.seriesPrice || DEFAULT_PRICES.seriesPrice;
+    const transferFeePercentage = adminContext?.state?.prices?.transferFeePercentage || DEFAULT_PRICES.transferFeePercentage;
     
     if (item.type === 'movie') {
       const basePrice = moviePrice;
@@ -221,9 +228,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const calculateTotalByPaymentType = (): { cash: number; transfer: number } => {
-    const moviePrice = adminContext?.state?.prices?.moviePrice || 80;
-    const seriesPrice = adminContext?.state?.prices?.seriesPrice || 300;
-    const transferFeePercentage = adminContext?.state?.prices?.transferFeePercentage || 10;
+    // Get current prices from admin context with real-time updates - SYNCHRONIZED
+    const moviePrice = adminContext?.state?.prices?.moviePrice || DEFAULT_PRICES.moviePrice;
+    const seriesPrice = adminContext?.state?.prices?.seriesPrice || DEFAULT_PRICES.seriesPrice;
+    const transferFeePercentage = adminContext?.state?.prices?.transferFeePercentage || DEFAULT_PRICES.transferFeePercentage;
     
     return state.items.reduce((totals, item) => {
       const basePrice = item.type === 'movie' ? moviePrice : (item.selectedSeasons?.length || 1) * seriesPrice;
