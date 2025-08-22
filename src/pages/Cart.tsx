@@ -88,6 +88,13 @@ export function Cart() {
             >
               Descubrir Anime
             </Link>
+            <Link
+              to="/admin"
+              className="w-full bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-colors text-center flex items-center justify-center"
+            >
+              <span className="mr-2">⚙️</span>
+              Panel de Control
+            </Link>
           </div>
         </div>
       </div>

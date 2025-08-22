@@ -1,5 +1,6 @@
 import React from 'react';
 import { DollarSign, Tv, Film, Star, CreditCard } from 'lucide-react';
+import { AdminContext } from '../context/AdminContext';
 
 interface PriceCardProps {
   type: 'movie' | 'tv';
@@ -9,21 +10,24 @@ interface PriceCardProps {
 }
 
 export function PriceCard({ type, selectedSeasons = [], episodeCount = 0, isAnime = false }: PriceCardProps) {
+  const adminContext = React.useContext(AdminContext);
+  
+  // Get prices from admin context with real-time updates
+  const moviePrice = adminContext?.state?.prices?.moviePrice || 80;
+  const seriesPrice = adminContext?.state?.prices?.seriesPrice || 300;
+  const transferFeePercentage = adminContext?.state?.prices?.transferFeePercentage || 10;
+  
   const calculatePrice = () => {
     if (type === 'movie') {
-      return 80; // Películas: $80 CUP
+      return moviePrice;
     } else {
-      // Series: $300 CUP por temporada
-      if (isAnime) {
-        return selectedSeasons.length * 300; // Anime por temporada
-      } else {
-        return selectedSeasons.length * 300;
-      }
+      // Series: dynamic price per season
+      return selectedSeasons.length * seriesPrice;
     }
   };
 
   const price = calculatePrice();
-  const transferPrice = Math.round(price * 1.1); // Precio con recargo del 10%
+  const transferPrice = Math.round(price * (1 + transferFeePercentage / 100));
   
   const getIcon = () => {
     if (type === 'movie') {
@@ -62,7 +66,7 @@ export function PriceCard({ type, selectedSeasons = [], episodeCount = 0, isAnim
       </div>
       
       <div className="space-y-3">
-        {/* Precio en Efectivo */}
+        {/* Cash Price */}
         <div className="bg-white rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-1">
             <span className="text-sm font-medium text-green-700 flex items-center">
@@ -75,7 +79,7 @@ export function PriceCard({ type, selectedSeasons = [], episodeCount = 0, isAnim
           </div>
         </div>
         
-        {/* Precio con Transferencia */}
+        {/* Transfer Price */}
         <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-1">
             <span className="text-sm font-medium text-orange-700 flex items-center">
@@ -87,7 +91,7 @@ export function PriceCard({ type, selectedSeasons = [], episodeCount = 0, isAnim
             </span>
           </div>
           <div className="text-xs text-orange-600">
-            +10% recargo bancario
+            +{transferFeePercentage}% recargo bancario
           </div>
         </div>
         
