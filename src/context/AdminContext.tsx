@@ -93,7 +93,7 @@ interface AdminContextType {
 const initialState: AdminState = {
   isAuthenticated: false,
   prices: {
-    moviePrice: 801,
+    moviePrice: 80,
     seriesPrice: 300,
     transferFeePercentage: 10,
     novelPricePerChapter: 5,
