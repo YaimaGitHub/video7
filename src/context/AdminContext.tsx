@@ -11,8 +11,81 @@ const EMBEDDED_CONFIG = {
     "transferFeePercentage": 10,
     "novelPricePerChapter": 5
   },
-  "deliveryZones": [],
-  "novels": [],
+  "deliveryZones": [
+    {
+      "id": 1,
+      "name": "Santiago de Cuba > Santiago de Cuba > Centro Histórico",
+      "cost": 50,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Santiago de Cuba > Santiago de Cuba > Vista Alegre",
+      "cost": 30,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Santiago de Cuba > Santiago de Cuba > Reparto Sueño",
+      "cost": 40,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "novels": [
+    {
+      "id": 1,
+      "titulo": "La Casa de Papel",
+      "genero": "Drama",
+      "capitulos": 41,
+      "año": 2017,
+      "descripcion": "Un grupo de ladrones lleva a cabo el atraco perfecto a la Fábrica Nacional de Moneda y Timbre.",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "titulo": "Elite",
+      "genero": "Drama",
+      "capitulos": 64,
+      "año": 2018,
+      "descripcion": "Las vidas de tres estudiantes de clase trabajadora cambian cuando ingresan a una escuela privada exclusiva.",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "titulo": "Vis a Vis",
+      "genero": "Drama",
+      "capitulos": 40,
+      "año": 2015,
+      "descripcion": "Una joven inocente es enviada a prisión donde debe aprender a sobrevivir.",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "titulo": "Narcos",
+      "genero": "Crimen",
+      "capitulos": 30,
+      "año": 2015,
+      "descripcion": "La historia del narcotráfico en Colombia y la lucha contra los carteles.",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "titulo": "Stranger Things",
+      "genero": "Ciencia Ficción",
+      "capitulos": 42,
+      "año": 2016,
+      "descripcion": "Un grupo de niños descubre fuerzas sobrenaturales y experimentos gubernamentales secretos.",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    }
+  ],
   "settings": {
     "autoSync": true,
     "syncInterval": 300000,
@@ -685,14 +758,79 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         action: 'export_source_start'
       });
 
-      // Importar dinámicamente el generador de código fuente
-      try {
-        const { generateCompleteSourceCode } = await import('../utils/sourceCodeGenerator');
-        await generateCompleteSourceCode(state.systemConfig);
-      } catch (importError) {
-        console.error('Error importing source code generator:', importError);
-        throw new Error('No se pudo cargar el generador de código fuente');
-      }
+      const zip = new JSZip();
+      
+      // Generate updated source code with current configuration
+      const generateAdminContextSource = () => `import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import JSZip from 'jszip';
+
+// CONFIGURACIÓN EMBEBIDA - Generada automáticamente
+const EMBEDDED_CONFIG = ${JSON.stringify(state.systemConfig, null, 2)};
+
+// CREDENCIALES DE ACCESO (CONFIGURABLES)
+const ADMIN_CREDENTIALS = {
+  username: 'admin',
+  password: 'tvalacarta2024'
+};
+
+// ... resto del código AdminContext.tsx igual ...`;
+
+      const generateCartContextSource = () => `import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import { Toast } from '../components/Toast';
+import type { CartItem } from '../types/movie';
+
+// PRECIOS EMBEBIDOS - Generados automáticamente
+const EMBEDDED_PRICES = ${JSON.stringify(state.prices, null, 2)};
+
+// ... resto del código CartContext.tsx igual ...`;
+
+      const generatePriceCardSource = () => `import React from 'react';
+import { DollarSign, Tv, Film, Star, CreditCard } from 'lucide-react';
+
+// PRECIOS EMBEBIDOS - Generados automáticamente
+const EMBEDDED_PRICES = ${JSON.stringify(state.prices, null, 2)};
+
+// ... resto del código PriceCard.tsx igual ...`;
+
+      const generateCheckoutModalSource = () => `import React, { useState, useEffect } from 'react';
+import { X, MapPin, User, Phone, Home, CreditCard, DollarSign, MessageCircle, Calculator, Truck, ExternalLink } from 'lucide-react';
+
+// ZONAS DE ENTREGA EMBEBIDAS - Generadas automáticamente
+const EMBEDDED_DELIVERY_ZONES = ${JSON.stringify(state.deliveryZones, null, 2)};
+
+// PRECIOS EMBEBIDOS
+const EMBEDDED_PRICES = ${JSON.stringify(state.prices, null, 2)};
+
+// ... resto del código CheckoutModal.tsx igual ...`;
+
+      const generateNovelasModalSource = () => `import React, { useState, useEffect } from 'react';
+import { X, Download, MessageCircle, Phone, BookOpen, Info, Check, DollarSign, CreditCard, Calculator, Search, Filter, SortAsc, SortDesc, Smartphone } from 'lucide-react';
+
+// CATÁLOGO DE NOVELAS EMBEBIDO - Generado automáticamente
+const EMBEDDED_NOVELS = ${JSON.stringify(state.novels, null, 2)};
+
+// PRECIOS EMBEBIDOS
+const EMBEDDED_PRICES = ${JSON.stringify(state.prices, null, 2)};
+
+// ... resto del código NovelasModal.tsx igual ...`;
+
+      // Add files to ZIP
+      zip.file('src/context/AdminContext.tsx', generateAdminContextSource());
+      zip.file('src/context/CartContext.tsx', generateCartContextSource());
+      zip.file('src/components/PriceCard.tsx', generatePriceCardSource());
+      zip.file('src/components/CheckoutModal.tsx', generateCheckoutModalSource());
+      zip.file('src/components/NovelasModal.tsx', generateNovelasModalSource());
+
+      // Generate and download ZIP
+      const content = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(content);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `TV_a_la_Carta_SourceCode_${new Date().toISOString().split('T')[0]}.zip`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
 
       addNotification({
         type: 'success',

@@ -1,13 +1,6 @@
 import React from 'react';
 import { DollarSign, Tv, Film, Star, CreditCard } from 'lucide-react';
-
-// PRECIOS EMBEBIDOS - Generados automáticamente
-const EMBEDDED_PRICES = {
-  "moviePrice": 80,
-  "seriesPrice": 300,
-  "transferFeePercentage": 10,
-  "novelPricePerChapter": 5
-};
+import { useCart } from '../context/CartContext';
 
 interface PriceCardProps {
   type: 'movie' | 'tv';
@@ -17,21 +10,9 @@ interface PriceCardProps {
 }
 
 export function PriceCard({ type, selectedSeasons = [], episodeCount = 0, isAnime = false }: PriceCardProps) {
-  // Obtener precios actuales del admin context
-  const getCurrentPrices = () => {
-    try {
-      const adminState = localStorage.getItem('admin_system_state');
-      if (adminState) {
-        const state = JSON.parse(adminState);
-        return state.prices || EMBEDDED_PRICES;
-      }
-    } catch (error) {
-      console.warn('Error getting admin prices:', error);
-    }
-    return EMBEDDED_PRICES;
-  };
-
+  const { getCurrentPrices } = useCart();
   const currentPrices = getCurrentPrices();
+  
   const moviePrice = currentPrices.moviePrice;
   const seriesPrice = currentPrices.seriesPrice;
   const transferFeePercentage = currentPrices.transferFeePercentage;
@@ -61,22 +42,6 @@ export function PriceCard({ type, selectedSeasons = [], episodeCount = 0, isAnim
     }
     return isAnime ? 'Anime' : 'Serie';
   };
-
-  // Escuchar cambios en los precios
-  React.useEffect(() => {
-    const handleAdminChange = (event: CustomEvent) => {
-      if (event.detail.type === 'prices') {
-        // Forzar re-render cuando cambien los precios
-        window.dispatchEvent(new Event('price-update'));
-      }
-    };
-
-    window.addEventListener('admin_state_change', handleAdminChange as EventListener);
-    
-    return () => {
-      window.removeEventListener('admin_state_change', handleAdminChange as EventListener);
-    };
-  }, []);
 
   return (
     <div className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 rounded-2xl p-6 border-2 border-green-300 shadow-xl transform hover:scale-105 transition-all duration-300">
