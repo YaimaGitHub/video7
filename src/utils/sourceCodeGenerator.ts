@@ -202,7 +202,7 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
   // Agregar opción de recogida en el local
   const pickupOption = {
     id: 'pickup',
-    name: 'Recogida en el local TV a la Carta',
+    name: 'Recogida en el local de TV a la Carta',
     cost: 0
   };
 

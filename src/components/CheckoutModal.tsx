@@ -110,7 +110,7 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
   // Agregar opción de recogida en el local
   const pickupOption = {
     id: 'pickup',
-    name: 'Recogida en el local TV a la Carta',
+    name: 'Recogida en el local de TV a la Carta',
     cost: 0
   };
 
@@ -321,7 +321,7 @@ export function CheckoutModal({ isOpen, onClose, onCheckout, items, total }: Che
                       className="mr-3 h-4 w-4 text-green-600 focus:ring-green-500"
                     />
                     <div>
-                      <p className="font-medium text-gray-900">Recogida en el local TV a la Carta</p>
+                      <p className="font-medium text-gray-900">Recogida en el local de TV a la Carta</p>
                       <p className="text-sm text-gray-600">Reparto Nuevo Vista Alegre, Santiago de Cuba</p>
                     </div>
                   </div>
