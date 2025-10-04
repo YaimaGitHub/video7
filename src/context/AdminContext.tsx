@@ -4,7 +4,6 @@ import JSZip from 'jszip';
 // CONFIGURACIÓN EMBEBIDA - Generada automáticamente
 const EMBEDDED_CONFIG = {
   "version": "2.1.0",
-  "lastExport": "2025-09-05T08:44:06.529Z",
   "prices": {
     "moviePrice": 100,
     "seriesPrice": 300,
@@ -13,306 +12,340 @@ const EMBEDDED_CONFIG = {
   },
   "deliveryZones": [
     {
-      "id": 1,
       "name": "Santiago de Cuba > Vista Hermosa",
       "cost": 400,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-09-17T09:20:53.160Z"
+      "id": 1759549448776,
+      "createdAt": "2025-10-04T03:44:08.776Z",
+      "updatedAt": "2025-10-04T03:44:08.776Z"
     },
     {
-      "id": 2,
       "name": "Santiago de Cuba > Antonio Maceo",
       "cost": 400,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-09-17T09:21:05.888Z"
+      "id": 1759549461376,
+      "createdAt": "2025-10-04T03:44:21.376Z",
+      "updatedAt": "2025-10-04T03:44:21.376Z"
     },
     {
-      "id": 3,
       "name": "Santiago de Cuba > Centro de la ciudad",
       "cost": 250,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-09-17T09:21:30.455Z"
+      "id": 1759549473488,
+      "createdAt": "2025-10-04T03:44:33.488Z",
+      "updatedAt": "2025-10-04T03:44:33.488Z"
     },
     {
       "name": "Santiago de Cuba > Versalles Hasta el Hotel",
       "cost": 500,
-      "id": 1758100929096,
-      "createdAt": "2025-09-17T09:22:09.096Z",
-      "updatedAt": "2025-09-17T09:22:09.096Z"
+      "id": 1759549486736,
+      "createdAt": "2025-10-04T03:44:46.736Z",
+      "updatedAt": "2025-10-04T03:44:46.736Z"
     },
     {
       "name": "Santiago de Cuba > Carretera del Morro",
       "cost": 300,
-      "id": 1758100944200,
-      "createdAt": "2025-09-17T09:22:24.200Z",
-      "updatedAt": "2025-09-17T09:22:24.200Z"
+      "id": 1759549499552,
+      "createdAt": "2025-10-04T03:44:59.552Z",
+      "updatedAt": "2025-10-04T03:44:59.552Z"
     },
     {
       "name": "Santiago de Cuba > Altamira",
       "cost": 400,
-      "id": 1758100965751,
-      "createdAt": "2025-09-17T09:22:45.751Z",
-      "updatedAt": "2025-09-17T09:22:45.751Z"
+      "id": 1759549511664,
+      "createdAt": "2025-10-04T03:45:11.664Z",
+      "updatedAt": "2025-10-04T03:45:11.664Z"
     },
     {
       "name": "Santiago de Cuba > Cangrejitos",
       "cost": 350,
-      "id": 1758100993856,
-      "createdAt": "2025-09-17T09:23:13.856Z",
-      "updatedAt": "2025-09-17T09:23:13.856Z"
+      "id": 1759549521424,
+      "createdAt": "2025-10-04T03:45:21.424Z",
+      "updatedAt": "2025-10-04T03:45:21.424Z"
     },
     {
       "name": "Santiago de Cuba > Trocha",
       "cost": 250,
-      "id": 1758101017063,
-      "createdAt": "2025-09-17T09:23:37.063Z",
-      "updatedAt": "2025-09-17T09:23:37.063Z"
+      "id": 1759549534560,
+      "createdAt": "2025-10-04T03:45:34.560Z",
+      "updatedAt": "2025-10-04T03:45:34.560Z"
     },
     {
       "name": "Santiago de Cuba > Veguita de Galo",
       "cost": 300,
-      "id": 1758101035400,
-      "createdAt": "2025-09-17T09:23:55.400Z",
-      "updatedAt": "2025-09-17T09:23:55.400Z"
+      "id": 1759549546912,
+      "createdAt": "2025-10-04T03:45:46.912Z",
+      "updatedAt": "2025-10-04T03:45:46.912Z"
     },
     {
       "name": "Santiago de Cuba > Plaza de Martes",
       "cost": 250,
-      "id": 1758101052903,
-      "createdAt": "2025-09-17T09:24:12.903Z",
-      "updatedAt": "2025-09-17T09:24:12.903Z"
+      "id": 1759549558000,
+      "createdAt": "2025-10-04T03:45:58.000Z",
+      "updatedAt": "2025-10-04T03:45:58.000Z"
     },
     {
       "name": "Santiago de Cuba > Portuondo",
       "cost": 300,
-      "id": 1758101091183,
-      "createdAt": "2025-09-17T09:24:51.183Z",
-      "updatedAt": "2025-09-17T09:24:51.183Z"
+      "id": 1759549569112,
+      "createdAt": "2025-10-04T03:46:09.112Z",
+      "updatedAt": "2025-10-04T03:46:09.112Z"
     },
     {
       "name": "Santiago de Cuba > Sta Barbara",
       "cost": 300,
-      "id": 1758101134159,
-      "createdAt": "2025-09-17T09:25:34.159Z",
-      "updatedAt": "2025-09-17T09:25:34.159Z"
+      "id": 1759549580560,
+      "createdAt": "2025-10-04T03:46:20.560Z",
+      "updatedAt": "2025-10-04T03:46:20.560Z"
     },
     {
       "name": "Santiago de Cuba > Sueño",
       "cost": 250,
-      "id": 1758101147999,
-      "createdAt": "2025-09-17T09:25:47.999Z",
-      "updatedAt": "2025-09-17T09:25:47.999Z"
+      "id": 1759549592112,
+      "createdAt": "2025-10-04T03:46:32.112Z",
+      "updatedAt": "2025-10-04T03:46:32.112Z"
     },
     {
       "name": "Santiago de Cuba > San Pedrito",
       "cost": 150,
-      "id": 1758101195423,
-      "createdAt": "2025-09-17T09:26:35.423Z",
-      "updatedAt": "2025-09-17T09:28:10.297Z"
+      "id": 1759549603696,
+      "createdAt": "2025-10-04T03:46:43.696Z",
+      "updatedAt": "2025-10-04T03:46:43.696Z"
     },
     {
       "name": "Santiago de Cuba > Agüero",
       "cost": 100,
-      "id": 1758101214991,
-      "createdAt": "2025-09-17T09:26:54.991Z",
-      "updatedAt": "2025-09-17T09:26:54.991Z"
+      "id": 1759549615848,
+      "createdAt": "2025-10-04T03:46:55.848Z",
+      "updatedAt": "2025-10-04T03:46:55.848Z"
     },
     {
       "name": "Santiago de Cuba > Distrito Jose Martí",
       "cost": 150,
-      "id": 1758101231864,
-      "createdAt": "2025-09-17T09:27:11.864Z",
-      "updatedAt": "2025-09-17T09:27:11.864Z"
+      "id": 1759549627504,
+      "createdAt": "2025-10-04T03:47:07.504Z",
+      "updatedAt": "2025-10-04T03:47:07.504Z"
     },
     {
       "name": "Santiago de Cuba > Los Pinos",
       "cost": 200,
-      "id": 1758101271623,
-      "createdAt": "2025-09-17T09:27:51.623Z",
-      "updatedAt": "2025-09-17T09:27:51.623Z"
+      "id": 1759549638272,
+      "createdAt": "2025-10-04T03:47:18.272Z",
+      "updatedAt": "2025-10-04T03:47:18.272Z"
     },
     {
       "name": "Santiago de Cuba > Quintero",
       "cost": 500,
-      "id": 1758101326983,
-      "createdAt": "2025-09-17T09:28:46.983Z",
-      "updatedAt": "2025-09-17T09:28:46.983Z"
+      "id": 1759549649480,
+      "createdAt": "2025-10-04T03:47:29.480Z",
+      "updatedAt": "2025-10-04T03:47:29.480Z"
     },
     {
       "name": "Santiago de Cuba > 30 de noviembre bajo",
       "cost": 400,
-      "id": 1758101359671,
-      "createdAt": "2025-09-17T09:29:19.671Z",
-      "updatedAt": "2025-09-17T09:29:19.671Z"
+      "id": 1759549660904,
+      "createdAt": "2025-10-04T03:47:40.904Z",
+      "updatedAt": "2025-10-04T03:47:40.904Z"
     },
     {
       "name": "Santiago de Cuba > Rajayoga",
       "cost": 600,
-      "id": 1758101371199,
-      "createdAt": "2025-09-17T09:29:31.199Z",
-      "updatedAt": "2025-09-17T09:29:31.199Z"
+      "id": 1759549668800,
+      "createdAt": "2025-10-04T03:47:48.800Z",
+      "updatedAt": "2025-10-04T03:47:48.800Z"
     },
     {
       "name": "Santiago de Cuba > Pastorita",
       "cost": 600,
-      "id": 1758101381527,
-      "createdAt": "2025-09-17T09:29:41.527Z",
-      "updatedAt": "2025-09-17T09:29:41.527Z"
+      "id": 1759549676760,
+      "createdAt": "2025-10-04T03:47:56.760Z",
+      "updatedAt": "2025-10-04T03:47:56.760Z"
     },
     {
       "name": "Santiago de Cuba > Vista Alegre",
       "cost": 300,
-      "id": 1758101392543,
-      "createdAt": "2025-09-17T09:29:52.543Z",
-      "updatedAt": "2025-09-17T09:29:52.543Z"
+      "id": 1759549686896,
+      "createdAt": "2025-10-04T03:48:06.896Z",
+      "updatedAt": "2025-10-04T03:48:06.896Z"
     },
     {
       "name": "Santiago de Cuba > Caney",
       "cost": 1000,
-      "id": 1758101407935,
-      "createdAt": "2025-09-17T09:30:07.935Z",
-      "updatedAt": "2025-09-17T09:30:07.935Z"
+      "id": 1759549696240,
+      "createdAt": "2025-10-04T03:48:16.240Z",
+      "updatedAt": "2025-10-04T03:48:16.240Z"
     },
     {
       "name": "Santiago de Cuba > Nuevo Vista Alegre",
       "cost": 100,
-      "id": 1758101424479,
-      "createdAt": "2025-09-17T09:30:24.479Z",
-      "updatedAt": "2025-09-17T09:30:24.479Z"
+      "id": 1759549706888,
+      "createdAt": "2025-10-04T03:48:26.888Z",
+      "updatedAt": "2025-10-04T03:48:26.888Z"
     },
     {
       "name": "Santiago de Cuba > Marimón",
       "cost": 100,
-      "id": 1758101435703,
-      "createdAt": "2025-09-17T09:30:35.703Z",
-      "updatedAt": "2025-09-17T09:30:35.703Z"
+      "id": 1759549715521,
+      "createdAt": "2025-10-04T03:48:35.521Z",
+      "updatedAt": "2025-10-04T03:48:35.521Z"
     },
     {
       "name": "Santiago de Cuba > Versalle Edificios",
       "cost": 800,
-      "id": 1758101461055,
-      "createdAt": "2025-09-17T09:31:01.055Z",
-      "updatedAt": "2025-09-17T09:31:01.055Z"
+      "id": 1759549729736,
+      "createdAt": "2025-10-04T03:48:49.736Z",
+      "updatedAt": "2025-10-04T03:48:49.736Z"
     },
     {
       "name": "Santiago de Cuba > Ferreiro",
       "cost": 300,
-      "id": 1758101481079,
-      "createdAt": "2025-09-17T09:31:21.079Z",
-      "updatedAt": "2025-09-17T09:31:21.079Z"
+      "id": 1759549738720,
+      "createdAt": "2025-10-04T03:48:58.720Z",
+      "updatedAt": "2025-10-04T03:48:58.720Z"
     },
     {
       "name": "Santiago de Cuba > 30 de noviembre altos",
       "cost": 500,
-      "id": 1758101546055,
-      "createdAt": "2025-09-17T09:32:26.055Z",
-      "updatedAt": "2025-09-17T09:32:26.055Z"
+      "id": 1759549747952,
+      "createdAt": "2025-10-04T03:49:07.952Z",
+      "updatedAt": "2025-10-04T03:49:07.952Z"
     }
   ],
   "novels": [
     {
-      "id": 1,
-      "titulo": "El Turco",
-      "genero": "Acción, Drama y Romance",
-      "capitulos": 6,
-      "año": 2025,
-      "descripcion": "Balaban, un soldado del ejército jenízaro, se va a vivir a Moena, en el norte de Italia, después de la Batalla de Viena en 1683 y lucha por los derechos de la gente local.",
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-09-20T07:35:27.323Z"
-    },
-    {
-      "id": 2,
-      "titulo": "Holding",
-      "genero": "Familia, Drama",
-      "capitulos": 20,
-      "año": 2024,
-      "descripcion": "Aydan, campeona de apnea, se incorpora a una poderosa empresa familiar. Su presencia saca a la luz oscuros secretos y luchas de poder. Debe sortear la influencia corruptora de la riqueza sin dejar de ser fiel a sí misma.",
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-09-20T07:38:27.922Z"
-    },
-    {
-      "id": 3,
-      "titulo": "La Realeza ",
-      "genero": "Drama, Comedia",
-      "capitulos": 8,
-      "año": 2025,
-      "descripcion": "Un joven y apuesto príncipe conoce a una chica que dirige el primer hotel de lujo de la India. El encuentro de estos dos mundos, la aristocracia en decadencia y el capitalismo desenfrenado, genera un torbellino de ambición, conflicto y romance.",
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-09-20T07:41:35.857Z"
-    },
-    {
-      "id": 4,
-      "titulo": "Valentina, mi amor especial",
+      "titulo": "Alaca",
       "genero": "Drama",
-      "capitulos": 30,
-      "año": 2024,
-      "descripcion": "La historia de una niña con autismo que se convierte en un genio de la tecnología.",
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-09-20T07:41:00.465Z"
-    },
-    {
-      "id": 5,
-      "titulo": "Alaca (Cicatrices del alma)",
-      "genero": "Drama.",
       "capitulos": 120,
       "año": 2024,
-      "descripcion": "La vida de una niña se pone patas arriba cuando le roban el riñón durante un violento secuestro, orquestado por su padre biológico rico que necesita un donante.",
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-09-21T08:59:08.653Z"
+      "descripcion": "La vida de una joven se ve destrozada cuando le roban un riñón durante un violento secuestro, organizado por su rico padre biológico, que necesita un donante. Mientras busca respuestas, descubre el secreto que cambió su vida y se enfrenta a la traición de Kenan, el amor de su vida, cuyas complicadas lealtades ponen a prueba su vínculo.",
+      "pais": "Turquía",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/alaca.jpeg",
+      "estado": "finalizada",
+      "id": 1759547587158,
+      "createdAt": "2025-10-04T03:13:07.158Z",
+      "updatedAt": "2025-10-04T03:16:03.389Z"
     },
     {
-      "titulo": "Viceversa",
+      "titulo": "Salvaje (Yabani)",
       "genero": "Drama",
-      "capitulos": 80,
+      "capitulos": 20,
       "año": 2023,
-      "descripcion": "El argumento propuesto por los guionistas Amílcar Salatti, Yoel Infante y María Claudia Figueroa parte de la historia de tres parejas de jóvenes que acuden a un concierto de música electrónica y sufren un accidente, lo que detona sucesos posteriores.",
-      "id": 1758354384106,
-      "createdAt": "2025-09-20T07:46:24.106Z",
-      "updatedAt": "2025-09-20T07:46:24.106Z"
+      "descripcion": "Salvaje novela turca, Yaman es un joven que ha vivido en las calles desde que tiene uso de razón. Ha tenido una vida dura, teniendo que luchar para sobrevivir y encontrar comida. Afortunadamente, siempre ha tenido a su lado tres amigos que se convirtieron en su familia, Cesur, Asi y Umut.\n\nSe cruzaron cuando eran apenas unos niños y a partir de ahí no se separaron. De manera inexplicable ninguno sabe nada de su pasado o porque están en la calle, sin importar su pasado o traumas decidieron confiar entre ellos y seguir adelante.\n\nLa gran preocupación del grupo es cumplir con el tratamiento de Umut, quien no puede caminar y el “Doctor milagro” es su única esperanza, pero el médico vive en el extranjero y ve a pocos pacientes una vez al año cuando llega al país. \n\nYaman cometerá el mayor error de su vida, entrando a una mansión que probablemente podría ser la de su familia, pero se le cae la cara de vergüenza ya que ha atacado a quien sería su hermano y apuñalado a su madre. Ahora su familia y la policía lo buscan.\n\nLa vida de Yaman comenzará a dar un giro inesperado cuando se cruce con Ates y su novia Ruya. Estos salían de un club nocturno. A partir de ahí una serie de eventos golpearán la vida de Yaman y lo llevarán al límite. Salvaje serie turca.",
+      "pais": "Turquía",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/salvaje.jpeg",
+      "estado": "transmision",
+      "id": 1759547831629,
+      "createdAt": "2025-10-04T03:17:11.629Z",
+      "updatedAt": "2025-10-04T03:17:11.629Z"
     },
     {
-      "titulo": "Amar, Donde El Amor Teje Sus Redes",
-      "genero": "Drama",
+      "titulo": "El Turco",
+      "genero": "Romance",
+      "capitulos": 6,
+      "año": 2024,
+      "descripcion": "Tras ser traicionado y condenado a muerte, logra escapar y es curado por los aldeanos del pintoresco pueblo italiano de Moena, ubicado en los Alpes. A medida que se recupera, Balaban, al que apodan 'El Turco', se convierte en protector del pueblo, resistiendo las opresivas cargas impositivas de su señor feudal. Con el tiempo, la lucha se intensifica y, cuando un antiguo enemigo del protagonista, el implacable caballero Marco, aparece, comienza la batalla decisiva.",
+      "pais": "Turquía",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/el+turco.jpeg",
+      "estado": "finalizada",
+      "id": 1759547886013,
+      "createdAt": "2025-10-04T03:18:06.013Z",
+      "updatedAt": "2025-10-04T03:18:06.013Z"
+    },
+    {
+      "titulo": "Amar, donde el amor teje sus redes",
+      "genero": "Romance",
       "capitulos": 90,
       "año": 2025,
-      "descripcion": "Estrella, una madre soltera, regresa al pequeño pueblo pesquero de su juventud después de la muerte de su padre. Se enamora de Fabián, un padre viudo y enfrenta un huracán de problemas que ponen en riesgo el bienestar de sus familias.",
-      "id": 1758445394324,
-      "createdAt": "2025-09-21T09:03:14.324Z",
-      "updatedAt": "2025-09-21T09:03:14.324Z"
+      "descripcion": "Estrella Contreras, una madre soltera que lucha por criar a su hija Azul, regresa a su pueblo natal tras la muerte de su padre, donde conoce a Fabián Bravo, un padre viudo y pescador que lucha por recuperar la custodia de su hija Yazmín.",
+      "pais": "México",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/amar+donde+el+amor+teje+sus+redes.jpg",
+      "estado": "finalizada",
+      "id": 1759548453473,
+      "createdAt": "2025-10-04T03:27:33.473Z",
+      "updatedAt": "2025-10-04T03:27:33.473Z"
     },
     {
-      "titulo": "Amor en blanco y negro",
+      "titulo": "Amor en blanco y negro ES (Siyah Beyaz Ask)",
       "genero": "Romance",
       "capitulos": 64,
       "año": 2017,
-      "descripcion": "Una doctora que dedica su vida a salvar vidas es capturada por un hombre que se dedica a quitarlas.",
-      "id": 1758445503268,
-      "createdAt": "2025-09-21T09:05:03.268Z",
-      "updatedAt": "2025-09-21T09:05:03.268Z"
+      "descripcion": "Amor en Blanco y Negro novela turca es protagonizada por Ferhat Aslan, un joven que tiene un empleo que no todos pueden cumplir. Él es un asesino que trabaja para Namik, quien es su tío. Namik es el líder de los Emirham. La otra protagonista de esta serie es Asli Cinar, una neurocirujana que adora su empleo. Un día, no regresará a casa y será secuestrada por sus habilidades con el bisturí. Tendrá que salvarle la vida a un hombre al que Ferhat agredió. Sorprendida por los hechos, se convertirá en testigo de ese crimen, y reconocerá al infame Namik Emirham.\n\nSerá allí cuando Namik desarrolle desconfianza hacia la mujer, y es que además de ser un mafioso, es uno de los benefactores más importantes del hospital en dónde trabaja Asli. Namik le dará la misión a Ferhat de asesinar a la testigo, pero no podrá completarla, y le ofrecerá a Asli la opción de morir o contraer matrimonio con él. Resultará que el hermano de nuestra protagonista es policía, y está investigando casos de corrupción, en los que se incluye a los Emirham. Se llevará a cabo la boda, pero Namik jamás creerá que el amor floreció entre su sobrino y la neurocirujana.\n\nSeguirán con su matrimonio falso en Amor en Blanco y Negro serie turca, y poco a poco, Asli dejará de sentir miedo hacia Ferhat.",
+      "pais": "Turquía",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/amor+en+blanco+y+negro.jpeg",
+      "estado": "finalizada",
+      "id": 1759548589366,
+      "createdAt": "2025-10-04T03:29:49.366Z",
+      "updatedAt": "2025-10-04T03:29:49.366Z"
     },
     {
-      "titulo": "Amor Perfecto",
-      "genero": "Drama, Romántica",
+      "titulo": "Amor perfecto",
+      "genero": "Romance",
       "capitulos": 60,
       "año": 2023,
-      "descripcion": "Amor Perfecto cuenta la historia de Marê (Camila Queiroz), una niña rica, estudiante de Administración y Finanzas, que se enamora del joven doctor Orlando (Diogo Almeida). Marê está de novia con Gaspar (Thiago Lacerda) pero dejará de lado los deseos de su padre para vivir ese amor. Sin embargo, la trágica muerte de su progenitor y los manejos de su madrastra para inculparla llevan a Marê a una prisión injusta.",
-      "id": 1758445741890,
-      "createdAt": "2025-09-21T09:09:01.890Z",
-      "updatedAt": "2025-09-21T09:09:01.890Z"
+      "descripcion": "Amor perfecto novela brasileña, Mare es una joven visionaria, regresa a su pueblo natal en 1934 para tomar las riendas del hotel familiar. Sus sueños se ven truncados cuando su padre, cegado por los prejuicios, la obliga a casarse con Gaspar, un hombre malvado y sin escrúpulos. La ambición desmedida de Gilda, la madrastra de Mare, la lleva a conspirar con Gaspar para deshacerse de Leonel, el padre de Mare, y culpar a la joven de su muerte.\n\nMare es encarcelada injustamente y da a luz en la cárcel. Tras ocho años en prisión, finalmente cumple su condena en el año 1942, sale de prisión con un solo objetivo, vengarse de quienes la traicionaron y recuperar a su hijo perdido.\n\nEn su camino, Mare se reencuentra con Orlando, un médico que la amó en el pasado y que ahora está dispuesto a luchar por ella. Juntos, se enfrentan a los poderosos de Sao Jacinto. Mientras tanto Marcelino, es hijo de Orlando y Mare, se ha criado en un monasterio, a cargo de Fray León, quien se ha convertido en una figura paterna para el joven.\n\nGilda se ha convertido en una mujer poderosa e influyente, Mare hará todo en sus manos para recuperar su vida, reencontrarse con su hijo y vengarse de aquellos que le hicieron daño. Amor perfecto telenovela brasileña. ",
+      "pais": "Brasil",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/e7dWk4egyN4MvtB1y1HROZIHI.jpeg",
+      "estado": "finalizada",
+      "id": 1759548723639,
+      "createdAt": "2025-10-04T03:32:03.639Z",
+      "updatedAt": "2025-10-04T03:32:03.639Z"
+    },
+    {
+      "titulo": "Holding",
+      "genero": "Drama",
+      "capitulos": 20,
+      "año": 2024,
+      "descripcion": "La campeona mundial de apnea, Aydan Türker, se prepara para una nueva inmersión récord. Aydan no solo es una atleta exitosa; es una mujer emprendedora que ha entregado su corazón a los niños. Todos los ingresos que obtiene de su gran pasión, el buceo, los dedica a mantener en pie las escuelas que fundó, incluyendo aquellas que atienden a niños con necesidades educativas especiales. Uno de esos colegios le traerá a su vida a F?rat y al comisario Kerem. Uno de los principales patrocinadores de Aydan Türker es Alt?nordu Holding, uno de los grupos empresariales más grandes del país. Bajo el liderazgo de Osman Alt?nordu y con el impulso de sus hijas Ebru, Ceyda y Sema, la empresa crece día a día con una imagen impecable. Sin embargo, detrás de ese brillante rostro se esconden luchas de poder, conflictos familiares y un pasado oscuro. Como todo gran poder, Alt?nordu Holding también tiene grandes enemigos. Su adversario más peligroso es Mahir Beyo?lu, cómplice de aquel pasado oscuro. El viejo amigo y compañero de Osman, Zakir, tendrá que jugar con astucia para detener a Mahir. En medio de este caos, Osman descubre que padece una enfermedad incurable. Al borde de una ruptura total, se encuentra frente a la necesidad de enfrentarse al secreto mejor guardado de su vida: su hija, y con ello, a toda su familia. Para esa confrontación, Osman elige el mismo día en que Aydan romperá su nuevo récord. Ese día marcará el inicio de un viaje sin retorno para todos.",
+      "pais": "Turquía",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/holding.jpeg",
+      "estado": "finalizada",
+      "id": 1759548810927,
+      "createdAt": "2025-10-04T03:33:30.927Z",
+      "updatedAt": "2025-10-04T03:41:48.825Z"
+    },
+    {
+      "titulo": "La realeza",
+      "genero": "Romance",
+      "capitulos": 8,
+      "año": 2025,
+      "descripcion": "'La realeza' presenta una historia romántica que trasciende clichés. La trama gira en torno al encuentro entre Sophia, una empresaria moderna, y Aviraaj, un príncipe con un legado en decadencia. Él posee una mansión ancestral que necesita ser restaurada, pero carece de los fondos necesarios. Ella ve en ese lugar la oportunidad perfecta para lanzar su nueva empresa. Así, ambos deciden colaborar, aunque sus diferencias culturales y personales amenazan con arruinar todo. \n\nEl encantador príncipe Aviraaj conoce a Sofía, una empresaria hecha a sí misma, y los mundos de la realeza y las startups chocan en una apasionada tormenta de romance y ambición",
+      "pais": "India",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/la+realeza.jpeg",
+      "estado": "finalizada",
+      "id": 1759548887343,
+      "createdAt": "2025-10-04T03:34:47.343Z",
+      "updatedAt": "2025-10-04T03:34:47.343Z"
+    },
+    {
+      "titulo": "Valentina, mi amor especial",
+      "genero": "Romance",
+      "capitulos": 39,
+      "año": 2024,
+      "descripcion": "En Valentina, mi amor especial, Herrera encarna a una joven en el espectro autista, quien es un genio en el mundo de la tecnología. El papel masculino principal es interpretado por Mauricio Novoa, un actor mexicano en ascenso, conocido por sus actuaciones en las últimas telenovelas producidas en Miami.\n\nValentina ha crecido protegida de la sociedad por su madre adoptiva en el pequeño pueblo de Chiquilistlán, donde destacó académicamente. Mudarse a la gran ciudad de Guadalajara después de que su madre fallece en un accidente será muy difícil, ya que se enfrentará lo peor y lo mejor de la humanidad: se enamorará por primera vez, conocerá nuevos amigos, pero también la envidia y los celos de aquellos que eligen no aceptarla.",
+      "pais": "México",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/valentina+mi+amor+especial.jpeg",
+      "estado": "finalizada",
+      "id": 1759549070923,
+      "createdAt": "2025-10-04T03:37:50.923Z",
+      "updatedAt": "2025-10-04T03:37:50.923Z"
     }
   ],
   "settings": {
+    "version": "2.1.0",
     "autoSync": true,
     "syncInterval": 300000,
     "enableNotifications": true,
-    "maxNotifications": 100
+    "maxNotifications": 100,
+    "metadata": {
+      "totalOrders": 0,
+      "totalRevenue": 0,
+      "lastOrderDate": "",
+      "systemUptime": "2025-10-04T02:55:36.295Z"
+    }
   },
-  "metadata": {
-    "totalOrders": 0,
-    "totalRevenue": 0,
-    "lastOrderDate": "",
-    "systemUptime": "2025-09-05T07:41:37.754Z"
-  }
+  "syncStatus": {
+    "lastSync": "2025-10-04T03:49:03.729Z",
+    "isOnline": true,
+    "pendingChanges": 1
+  },
+  "exportDate": "2025-10-04T03:49:10.992Z"
 };
 
 // CREDENCIALES DE ACCESO (CONFIGURABLES)
@@ -973,79 +1006,14 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         action: 'export_source_start'
       });
 
-      const zip = new JSZip();
-      
-      // Generate updated source code with current configuration
-      const generateAdminContextSource = () => `import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import JSZip from 'jszip';
-
-// CONFIGURACIÓN EMBEBIDA - Generada automáticamente
-const EMBEDDED_CONFIG = ${JSON.stringify(state.systemConfig, null, 2)};
-
-// CREDENCIALES DE ACCESO (CONFIGURABLES)
-const ADMIN_CREDENTIALS = {
-  username: 'admin',
-  password: 'tvalacarta2024'
-};
-
-// ... resto del código AdminContext.tsx igual ...`;
-
-      const generateCartContextSource = () => `import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import { Toast } from '../components/Toast';
-import type { CartItem } from '../types/movie';
-
-// PRECIOS EMBEBIDOS - Generados automáticamente
-const EMBEDDED_PRICES = ${JSON.stringify(state.prices, null, 2)};
-
-// ... resto del código CartContext.tsx igual ...`;
-
-      const generatePriceCardSource = () => `import React from 'react';
-import { DollarSign, Tv, Film, Star, CreditCard } from 'lucide-react';
-
-// PRECIOS EMBEBIDOS - Generados automáticamente
-const EMBEDDED_PRICES = ${JSON.stringify(state.prices, null, 2)};
-
-// ... resto del código PriceCard.tsx igual ...`;
-
-      const generateCheckoutModalSource = () => `import React, { useState, useEffect } from 'react';
-import { X, MapPin, User, Phone, Home, CreditCard, DollarSign, MessageCircle, Calculator, Truck, ExternalLink } from 'lucide-react';
-
-// ZONAS DE ENTREGA EMBEBIDAS - Generadas automáticamente
-const EMBEDDED_DELIVERY_ZONES = ${JSON.stringify(state.deliveryZones, null, 2)};
-
-// PRECIOS EMBEBIDOS
-const EMBEDDED_PRICES = ${JSON.stringify(state.prices, null, 2)};
-
-// ... resto del código CheckoutModal.tsx igual ...`;
-
-      const generateNovelasModalSource = () => `import React, { useState, useEffect } from 'react';
-import { X, Download, MessageCircle, Phone, BookOpen, Info, Check, DollarSign, CreditCard, Calculator, Search, Filter, SortAsc, SortDesc, Smartphone } from 'lucide-react';
-
-// CATÁLOGO DE NOVELAS EMBEBIDO - Generado automáticamente
-const EMBEDDED_NOVELS = ${JSON.stringify(state.novels, null, 2)};
-
-// PRECIOS EMBEBIDOS
-const EMBEDDED_PRICES = ${JSON.stringify(state.prices, null, 2)};
-
-// ... resto del código NovelasModal.tsx igual ...`;
-
-      // Add files to ZIP
-      zip.file('src/context/AdminContext.tsx', generateAdminContextSource());
-      zip.file('src/context/CartContext.tsx', generateCartContextSource());
-      zip.file('src/components/PriceCard.tsx', generatePriceCardSource());
-      zip.file('src/components/CheckoutModal.tsx', generateCheckoutModalSource());
-      zip.file('src/components/NovelasModal.tsx', generateNovelasModalSource());
-
-      // Generate and download ZIP
-      const content = await zip.generateAsync({ type: 'blob' });
-      const url = URL.createObjectURL(content);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `TV_a_la_Carta_SourceCode_${new Date().toISOString().split('T')[0]}.zip`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+      // Importar dinámicamente el generador de código fuente
+      try {
+        const { generateCompleteSourceCode } = await import('../utils/sourceCodeGenerator');
+        await generateCompleteSourceCode(state.systemConfig);
+      } catch (importError) {
+        console.error('Error importing source code generator:', importError);
+        throw new Error('No se pudo cargar el generador de código fuente');
+      }
 
       addNotification({
         type: 'success',
