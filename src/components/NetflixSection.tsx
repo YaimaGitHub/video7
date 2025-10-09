@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useTouchSwipe } from '../hooks/useTouchSwipe';
 
 interface NetflixSectionProps {
   title: string;
@@ -20,7 +19,9 @@ export function NetflixSection({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   const checkScroll = () => {
     if (scrollRef.current) {
@@ -46,29 +47,39 @@ export function NetflixSection({
     }
   };
 
-  const {
-    handleMouseDown
-  } = useTouchSwipe({
-    scrollRef,
-    onSwipeLeft: () => canScrollRight && scroll('right'),
-    onSwipeRight: () => canScrollLeft && scroll('left'),
-    threshold: 30,
-    velocityThreshold: 0.2,
-    preventScroll: false
-  });
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    setTouchEndX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+
+    const swipeThreshold = 50;
+    const swipeDistance = touchStartX - touchEndX;
+
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance > 0) {
+        scroll('right');
+      } else {
+        scroll('left');
+      }
+    }
+
+    setTouchStartX(0);
+    setTouchEndX(0);
+  };
 
   React.useEffect(() => {
     checkScroll();
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-
     window.addEventListener('resize', checkScroll);
-    window.addEventListener('resize', checkMobile);
-
-    return () => {
-      window.removeEventListener('resize', checkScroll);
-      window.removeEventListener('resize', checkMobile);
-    };
+    return () => window.removeEventListener('resize', checkScroll);
   }, [children]);
 
   return (
@@ -94,9 +105,7 @@ export function NetflixSection({
         {canScrollLeft && (
           <button
             onClick={() => scroll('left')}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-black/90 text-white p-2 sm:p-3 rounded-full transition-all duration-300 shadow-lg ${
-              isMobile ? 'opacity-60 active:opacity-100' : 'opacity-0 group-hover:opacity-100'
-            }`}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-black/90 text-white p-2 sm:p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-lg"
             aria-label="Scroll left"
           >
             <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -107,9 +116,7 @@ export function NetflixSection({
         {canScrollRight && (
           <button
             onClick={() => scroll('right')}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-black/90 text-white p-2 sm:p-3 rounded-full transition-all duration-300 shadow-lg ${
-              isMobile ? 'opacity-60 active:opacity-100' : 'opacity-0 group-hover:opacity-100'
-            }`}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-black/90 text-white p-2 sm:p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-lg"
             aria-label="Scroll right"
           >
             <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -120,16 +127,11 @@ export function NetflixSection({
         <div
           ref={scrollRef}
           onScroll={checkScroll}
-          onMouseDown={handleMouseDown}
-          className="overflow-x-auto scrollbar-hide -mx-4 sm:mx-0 momentum-scroll cursor-grab active:cursor-grabbing"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            WebkitOverflowScrolling: 'touch',
-            touchAction: 'pan-x pinch-zoom',
-            userSelect: 'none',
-            WebkitUserSelect: 'none'
-          }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className="overflow-x-auto scrollbar-hide -mx-4 sm:mx-0"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           <div className="flex gap-3 sm:gap-4 px-4 sm:px-0 pb-4" style={{ minWidth: 'min-content' }}>
             {children}
