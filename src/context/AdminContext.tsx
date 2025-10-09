@@ -5,7 +5,7 @@ import JSZip from 'jszip';
 const EMBEDDED_CONFIG = {
   "version": "2.1.0",
   "prices": {
-    "moviePrice": 100,
+    "moviePrice": 80,
     "seriesPrice": 300,
     "transferFeePercentage": 10,
     "novelPricePerChapter": 5
@@ -390,6 +390,32 @@ const EMBEDDED_CONFIG = {
       "id": 1759994252937,
       "createdAt": "2025-10-09T07:17:32.937Z",
       "updatedAt": "2025-10-09T07:17:32.937Z"
+    },
+    {
+      "titulo": "Velvet el nuevo imperio",
+      "genero": "Drama",
+      "capitulos": 38,
+      "año": 2025,
+      "descripcion": "“Velvet, el nuevo imperio” se centra en Ana Velázquez, una talentosa diseñadora mexicana que llega a la empresa de moda Velvet en Nueva York tras perder a su madre.\n\nAllí, se enamora de Alberto Márquez, heredero de la compañía, pero su relación se ve frustrada por intrigas y un matrimonio por conveniencia con Cristina Ortegui.\n\nEntonces, eventualmente, Alberto desaparece y Ana continúa su carrera mientras espera a su hijo.\n\nTres años después, resulta que el destino los reúne nuevamente. Así, superando mentiras y obstáculos, ambos recuperan su amor y fundan una nueva empresa que celebra el legado de Velvet y su futuro en familia...",
+      "pais": "Estados Unidos",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/Velvet+el+nuevo+imperio.jpeg",
+      "estado": "transmision",
+      "id": 1760000176983,
+      "createdAt": "2025-10-09T08:56:16.983Z",
+      "updatedAt": "2025-10-09T08:56:16.983Z"
+    },
+    {
+      "titulo": "Kuma la otra esposa",
+      "genero": "Drama",
+      "capitulos": 81,
+      "año": 2025,
+      "descripcion": "Una joven acusada injustamente de asesinato debe convertirse en la segunda esposa (Kuma) del hermano de la víctima. Ceylan es una hija amable y cumplidora, pero cuando su padre intenta venderla como segunda esposa o “kuma”, ella huye. En su camino se encuentra con Karan, un joven empresario adinerado que acoge a Ceylan bajo su protección. Ambos se enamoran, pero cuando Ceylan es acusada falsamente del asesinato del hermano de Karan, el amor se transforma en odio. Karan se casa con la viuda de su hermano fallecido y obliga a Ceylan a convertirse en su kuma. Atrapada en una casa donde todos la odian y sin poder regresar a casa, la única esperanza de Ceylan es demostrar su inocencia y, tal vez, recuperar el amor de Karan.\n\n“Kuma” te atrapa de inmediato con una historia impactante: Ceylan, una joven inocente, es acusada injustamente de un asesinato que no cometió. Para escapar de un destino cruel, se ve forzada a casarse con Karan, el hermano de la supuesta víctima, convirtiéndose en su segunda esposa. Desde el primer episodio, la telenovela te sumerge en un torbellino de emociones, donde la lucha por la verdad y la supervivencia se entrelazan. ¿Cómo logrará Ceylan probar su inocencia mientras enfrenta un matrimonio impuesto y un entorno lleno de rechazo?\n\nLa tensión sube cuando Ceylan entra en la vida de Karan y su primera esposa, Sema, quien la desprecia y la considera una rival. Los enfrentamientos entre ellas son solo la punta del iceberg: la familia guarda secretos oscuros que se revelan poco a poco, dejando más preguntas que respuestas. Cada capítulo te mantiene expectante, descubriendo las verdaderas intenciones de los personajes y las traiciones que acechan en cada esquina. ¿Qué enigmas saldrán a la luz y cómo cambiarán el rumbo de la vida de Ceylan?\n\n“Kuma” no solo es drama; también te ofrece una poderosa historia de amor y superación. Mientras Ceylan enfrenta hostilidad y desafíos, encuentra apoyo en los lugares más inesperados y comienza a florecer un romance que desafía todas las probabilidades. A lo largo de la serie, la ves transformarse de una mujer vulnerable a una luchadora decidida, lista para reclamar su lugar en el mundo. ¿Podrá el amor sobrevivir en un entorno tan hostil y llevará a Ceylan a encontrar su verdadera fuerza?\n\nCon los majestuosos paisajes del este de Turquía como telón de fondo, “Kuma” es un espectáculo visual que acompaña una narrativa emocionante. La telenovela combina temas profundos como la injusticia y la resiliencia con giros inesperados que te dejarán ansioso por el próximo episodio. Es una invitación a seguir el viaje de Ceylan hacia la redención, lleno de misterio, pasión y esperanza. Si buscas una historia que te haga sentir, reflexionar y mantenerte al borde del asiento, “Kuma” te está esperando para que descubras qué pasa después. ",
+      "pais": "Turquía",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/Kuma+la+otra+esposa.jpeg",
+      "estado": "transmision",
+      "id": 1760000320843,
+      "createdAt": "2025-10-09T08:58:40.843Z",
+      "updatedAt": "2025-10-09T08:58:40.843Z"
     }
   ],
   "settings": {
