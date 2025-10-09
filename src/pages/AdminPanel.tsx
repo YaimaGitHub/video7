@@ -270,12 +270,22 @@ export function AdminPanel() {
 
       const fullSystemConfig = {
         version: state.systemConfig.version,
+        lastExport: new Date().toISOString(),
         prices: state.prices,
         deliveryZones: state.deliveryZones,
         novels: state.novels,
-        settings: state.systemConfig,
-        syncStatus: state.syncStatus,
-        exportDate: new Date().toISOString(),
+        settings: state.systemConfig.settings || {
+          autoSync: true,
+          syncInterval: 300000,
+          enableNotifications: true,
+          maxNotifications: 100,
+        },
+        metadata: state.systemConfig.metadata || {
+          totalOrders: 0,
+          totalRevenue: 0,
+          lastOrderDate: '',
+          systemUptime: new Date().toISOString(),
+        },
       };
 
       await generateCompleteSourceCode(fullSystemConfig);

@@ -9,8 +9,9 @@
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
     touch-action: manipulation;
+    overscroll-behavior: none;
   }
-  
+
   body {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -20,6 +21,8 @@
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
+    -webkit-overflow-scrolling: touch;
   }
   
   /* Permitir selección solo en elementos de entrada */
@@ -59,8 +62,9 @@
   /* Permitir interacción en botones e imágenes clickeables */
   button, a, [role="button"], .clickable {
     pointer-events: auto;
+    touch-action: manipulation;
   }
-  
+
   button img, a img, [role="button"] img, .clickable img {
     pointer-events: none;
   }
@@ -222,12 +226,15 @@
     -ms-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: none;
   }
 
   /* Smooth momentum scrolling */
   .momentum-scroll {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
   }
 
   /* Improved button visibility on mobile */

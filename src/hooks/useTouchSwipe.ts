@@ -50,9 +50,9 @@ export function useTouchSwipe({
     const diffX = Math.abs(touchStartX - touchCurrentX);
     const diffY = Math.abs(touchStartY - touchCurrentY);
 
-    // Determine if this is a horizontal or vertical swipe
-    if (diffX > 10 || diffY > 10) {
-      isHorizontalSwipe.current = diffX > diffY;
+    // Determine if this is a horizontal or vertical swipe with more sensitivity
+    if (diffX > 5 || diffY > 5) {
+      isHorizontalSwipe.current = diffX > diffY * 1.5;
     }
 
     // Calculate velocity for smoother interactions
@@ -68,10 +68,11 @@ export function useTouchSwipe({
     lastTouchX.current = touchCurrentX;
     lastTouchTime.current = currentTime;
 
-    // Prevent default scroll behavior only for horizontal swipes
-    if (preventScroll && isHorizontalSwipe.current && diffX > 15) {
-      e.preventDefault();
-      e.stopPropagation();
+    // Prevent default scroll behavior only for confirmed horizontal swipes
+    if (preventScroll && isHorizontalSwipe.current && diffX > 20) {
+      if (e.cancelable) {
+        e.preventDefault();
+      }
     }
   }, [isDragging, touchStartX, touchStartY, preventScroll]);
 
