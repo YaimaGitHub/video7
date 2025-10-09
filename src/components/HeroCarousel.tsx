@@ -121,13 +121,20 @@ export function HeroCarousel({ items }: HeroCarouselProps) {
     setProgress(0);
   }, 100), [currentIndex, isTransitioning]);
 
-  // Touch swipe for mobile navigation
-  const { handleTouchStart, handleTouchMove, handleTouchEnd, swipeVelocity } = useTouchSwipe({
+  // Touch/Mouse swipe for navigation on all devices
+  const {
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+    handleMouseDown,
+    swipeVelocity
+  } = useTouchSwipe({
     scrollRef,
-    onSwipeLeft: () => !isTransitioning && goToNext(),
-    onSwipeRight: () => !isTransitioning && goToPrevious(),
+    onSwipeLeft: () => !isTransitioning && goToPrevious(),
+    onSwipeRight: () => !isTransitioning && goToNext(),
     threshold: 50,
-    velocityThreshold: 0.3
+    velocityThreshold: 0.3,
+    preventScroll: true
   });
 
   // Detect mobile device
@@ -233,9 +240,13 @@ export function HeroCarousel({ items }: HeroCarouselProps) {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className="relative h-96 md:h-[600px] overflow-hidden group touch-pan-y"
+      onMouseDown={handleMouseDown}
+      className="relative h-96 md:h-[600px] overflow-hidden group touch-pan-y select-none cursor-grab active:cursor-grabbing"
       style={{
-        transform: swipeVelocity > 0 ? 'translateZ(0)' : undefined
+        transform: swipeVelocity > 0 ? 'translateZ(0)' : undefined,
+        WebkitUserSelect: 'none',
+        userSelect: 'none',
+        touchAction: 'pan-y'
       }}
     >
       {/* Background Images with Parallax Effect */}
