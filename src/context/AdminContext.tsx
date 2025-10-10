@@ -216,11 +216,11 @@ const EMBEDDED_CONFIG = {
       "año": 2024,
       "descripcion": "La vida de una joven se ve destrozada cuando le roban un riñón durante un violento secuestro, organizado por su rico padre biológico, que necesita un donante. Mientras busca respuestas, descubre el secreto que cambió su vida y se enfrenta a la traición de Kenan, el amor de su vida, cuyas complicadas lealtades ponen a prueba su vínculo.",
       "pais": "Turquía",
-      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/alaca.jpeg",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/alaca2.jpg",
       "estado": "finalizada",
       "id": 1759547587158,
       "createdAt": "2025-10-04T03:13:07.158Z",
-      "updatedAt": "2025-10-04T03:16:03.389Z"
+      "updatedAt": "2025-10-10T18:40:26.755Z"
     },
     {
       "titulo": "Salvaje (Yabani)",
@@ -229,11 +229,11 @@ const EMBEDDED_CONFIG = {
       "año": 2023,
       "descripcion": "Salvaje novela turca, Yaman es un joven que ha vivido en las calles desde que tiene uso de razón. Ha tenido una vida dura, teniendo que luchar para sobrevivir y encontrar comida. Afortunadamente, siempre ha tenido a su lado tres amigos que se convirtieron en su familia, Cesur, Asi y Umut.\n\nSe cruzaron cuando eran apenas unos niños y a partir de ahí no se separaron. De manera inexplicable ninguno sabe nada de su pasado o porque están en la calle, sin importar su pasado o traumas decidieron confiar entre ellos y seguir adelante.\n\nLa gran preocupación del grupo es cumplir con el tratamiento de Umut, quien no puede caminar y el “Doctor milagro” es su única esperanza, pero el médico vive en el extranjero y ve a pocos pacientes una vez al año cuando llega al país. \n\nYaman cometerá el mayor error de su vida, entrando a una mansión que probablemente podría ser la de su familia, pero se le cae la cara de vergüenza ya que ha atacado a quien sería su hermano y apuñalado a su madre. Ahora su familia y la policía lo buscan.\n\nLa vida de Yaman comenzará a dar un giro inesperado cuando se cruce con Ates y su novia Ruya. Estos salían de un club nocturno. A partir de ahí una serie de eventos golpearán la vida de Yaman y lo llevarán al límite. Salvaje serie turca.",
       "pais": "Turquía",
-      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/salvaje2.jpg",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/salvaje(yabani).jpg",
       "estado": "transmision",
       "id": 1759547831629,
       "createdAt": "2025-10-04T03:17:11.629Z",
-      "updatedAt": "2025-10-09T15:05:00.174Z"
+      "updatedAt": "2025-10-10T18:34:00.171Z"
     },
     {
       "titulo": "El Turco",
@@ -333,11 +333,11 @@ const EMBEDDED_CONFIG = {
       "año": 2024,
       "descripcion": "Hace 20 años, se graduó de la facultad de medicina pero decidió ser ama de casa en lugar de seguir la carrera de medicina. Está casada con el exitoso cirujano Timur Yavuzoglu y ha dedicado su vida a su marido y a sus hijos. La aparentemente feliz familia Yavuzoglu está conmocionada por la enfermedad de Bahar. El médico de Bahar, Evren, está decidido a salvarla y dice que la única solución es un trasplante de hígado. ¡El único hígado compatible de la familia pertenece a Timur! Para la familia Yavuzoglu, que se somete a una prueba con un umbral importante, nada volverá a ser lo mismo…",
       "pais": "Turquía",
-      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/bahar.jpeg",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/Bahar2.jpg",
       "estado": "transmision",
       "id": 1759906090446,
       "createdAt": "2025-10-08T06:48:10.446Z",
-      "updatedAt": "2025-10-08T06:48:30.875Z"
+      "updatedAt": "2025-10-10T18:36:23.371Z"
     },
     {
       "titulo": "Amanecer",
@@ -433,7 +433,7 @@ const EMBEDDED_CONFIG = {
     {
       "titulo": "La chica del momento",
       "genero": "Romance",
-      "capitulos": 5,
+      "capitulos": 21,
       "año": 2023,
       "descripcion": "La trama, ambientada en los años 50, gira en torno a Beatriz (Duda Santos, de Renacer), quien ha crecido creyendo que su madre Clarice (Carol Castro de Huérfanos de su tierra) la abandonó cuando tenía cuatro años. Pero 16 años después descubre el paradero de su madre y se entera de que no la abandonó sino que perdió la memoria en un accidente. Pero Beatriz también descubrirá que otra joven, Bia (Maisa), ha tomado su lugar e iniciará un viaje lleno de obstáculos y de reconciliación con el pasado.",
       "pais": "Brasil",
@@ -441,7 +441,7 @@ const EMBEDDED_CONFIG = {
       "estado": "transmision",
       "id": 1760022506646,
       "createdAt": "2025-10-09T15:08:26.646Z",
-      "updatedAt": "2025-10-09T15:08:26.646Z"
+      "updatedAt": "2025-10-10T18:00:57.621Z"
     },
     {
       "titulo": "La encrucijada",
@@ -533,6 +533,71 @@ const EMBEDDED_CONFIG = {
       "id": 1760023539558,
       "createdAt": "2025-10-09T15:25:39.558Z",
       "updatedAt": "2025-10-09T15:25:39.558Z"
+    },
+    {
+      "titulo": "Carpinti",
+      "genero": "Romance",
+      "capitulos": 4,
+      "año": 2025,
+      "descripcion": "Tras recibir el corazón de Melike Alkan, Asli se adentra en un mundo de dolor, poder y amor prohibido, mientras todos se preguntan si la muerte de Melike fue accidente o asesinato.",
+      "pais": "Turquía",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/Carpinti.jpeg",
+      "estado": "transmision",
+      "id": 1760118692800,
+      "createdAt": "2025-10-10T17:51:32.800Z",
+      "updatedAt": "2025-10-10T17:51:32.800Z"
+    },
+    {
+      "titulo": "Betty la fea,la historia continúa",
+      "genero": "Romance",
+      "capitulos": 18,
+      "año": 2024,
+      "descripcion": "Betty la fea,la historia continua novela colombiana, Dos décadas después de conquistar el corazón de Armando Mendoza y transformar el mundo de la moda, Beatriz Pinzón Solano, mejor conocida como \"Betty la fea\", se enfrenta a nuevos desafíos en su vida personal y profesional.\n\nConvertida en una reconocida empresaria y diseñadora de moda, Betty lidera Ecomoda con mano firme, inspirando a las mujeres con sus creaciones y su visión innovadora. Sin embargo, su matrimonio con Armando, aunque lleno de amor, se ve amenazado por las inseguridades del pasado y la aparición de nuevos rivales en el mundo de los negocios.\n\nAl mismo tiempo, Betty debe lidiar con las nuevas generaciones en Ecomoda. Las jóvenes diseñadoras, influenciadas por las tendencias digitales y la cultura del influencer, desafían la visión tradicional de Betty sobre la moda, generando tensiones y debates en la empresa.\n\nEn medio de estos retos, Betty encuentra apoyo en sus fieles amigos, Marcela y Hugo, quienes la acompañan en sus aventuras y le ofrecen consejos sabios. Además, descubre nuevas aliadas en algunas de las jóvenes diseñadoras que, a pesar de sus diferencias, reconocen el talento y la experiencia de Betty. Betty la fea,la historia continúa telenovela colombiana.",
+      "pais": "Colombia",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/Betty+la+fea%2Cla+historia+contin%C3%BAa.jpeg",
+      "estado": "finalizada",
+      "id": 1760119057180,
+      "createdAt": "2025-10-10T17:57:37.180Z",
+      "updatedAt": "2025-10-10T17:57:37.180Z"
+    },
+    {
+      "titulo": "La Venganza de Analía 2",
+      "genero": "Drama",
+      "capitulos": 67,
+      "año": 2025,
+      "descripcion": "En una jugada maquiavélica, logra salir de la cárcel para volver a la política, su objetivo es claro: castigar a Analía y convertirse en el presidente de Colombia. Para evitar esto y proteger a los suyos, Analía pondrá en riesgo su vida y se enfrentará a Paulina Peña, aliada de Mejía y asesina profesional.",
+      "pais": "Colombia",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/Venganza-de-Analia-23.jpg",
+      "estado": "finalizada",
+      "id": 1760119856700,
+      "createdAt": "2025-10-10T18:10:56.700Z",
+      "updatedAt": "2025-10-10T18:10:56.700Z"
+    },
+    {
+      "titulo": "Leke",
+      "genero": "Romance",
+      "capitulos": 30,
+      "año": 2019,
+      "descripcion": "Leke novela turca tiene como personaje principal a Yasemin, quien se mudó a Alemania y tuvo muchos altibajos. A pesar de ello, no tuvo miedo de embarcarse en una aventura. Lograría ingresar en la escuela de leyes, y deberá trabajar medio tiempo para pagar sus estudios.\n\nDescubriremos que tiene un hermano con discapacidad auditiva,y su única meta es lograr recibir la custodia del joven, quien ha tenido que crecer en un orfanato porque sus padres no quisieron hacerse cargo de él. Igualmente, está ahorrando dinero para costear la operación de su hermano. Conoceremos a otro personaje llamado Cem, quien es el mayor de dos hijos de una familia acaudalada. Su infancia fue traumática, ya que fue testigo de un incidente que hizo que sus padres se divorciaran. Ahora es un hombre talentoso para los negocios, pero su vida personal es otra. No confía fácilmente en las personas y tiene cierto recelo con las mujeres. Sin esperar conocerse, tanto Yasemin como Cem tendrán un encuentro que se producirá en un evento que organizó la compañía de este joven apuesto.\n\nNinguno buscaba este encuentro en Leke serie turca, el cual será el desencadenante de una serie de sucesos que debes descubrir.",
+      "pais": "Turquía",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/Leke.jpeg",
+      "estado": "finalizada",
+      "id": 1760120038067,
+      "createdAt": "2025-10-10T18:13:58.067Z",
+      "updatedAt": "2025-10-10T18:13:58.067Z"
+    },
+    {
+      "titulo": "Manía de ti",
+      "genero": "Drama",
+      "capitulos": 111,
+      "año": 2024,
+      "descripcion": "Narra la historia de Luna (Moreira) y Viola (Gabz), dos chicas que se convierten en amigas cuando la segunda se instala en Angra dos Reis junto a su marido Mavi. Con el tiempo, Viola se destaca en la gastronomía, misma área de Luna y también se involucra con Rudá (Chay Suede), el hombre al que Luna ama. Años después, Viola se ha convertido en una éxitosa chef, mientras Luna perdió todo lo que tenía. Ambas rivales se unen para intentar liberar a Rudá de la cárcel, tras una trampa ocasionada por Mavi.",
+      "pais": "Brasil",
+      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/mania+de+ti2.jpg",
+      "estado": "finalizada",
+      "id": 1760120912035,
+      "createdAt": "2025-10-10T18:28:32.035Z",
+      "updatedAt": "2025-10-10T18:28:32.035Z"
     }
   ],
   "settings": {
