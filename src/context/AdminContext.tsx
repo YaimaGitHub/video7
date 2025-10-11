@@ -632,7 +632,7 @@ const EMBEDDED_CONFIG = {
         "año": 2024,
         "descripcion": "Yalan novela turca, Melike, una mujer fuerte y resiliente, ha sacrificado 20 años de su vida en prisión para proteger a su hija Elif. Acusada injustamente de un crimen que no cometió, Melike ha soportado el dolor y la soledad con la esperanza de un futuro mejor para su pequeña.\n\nAl fin liberada, Melike regresa a un mundo que ya no reconoce. Su hija Elif ha crecido bajo la tutela de otras personas, y Melike debe luchar para recuperar su lugar en la vida de su hija.\n\nSin embargo, la verdad sobre el crimen que la llevó a prisión no tardará en salir a la luz. Melike se verá envuelta en una red de mentiras, engaños y traiciones que amenazan con destruir su vida y la de su hija.\n\nEn medio de la adversidad, Melike encontrará apoyo en Suna, una joven abogada idealista que cree en su inocencia. Juntas, lucharán por desenmascarar a los verdaderos culpables y restaurar el honor de Melike.\n\nA lo largo de su camino, Melike se enfrentará a poderosos enemigos que no se detendrán ante nada para silenciarla. Deberá utilizar su astucia, su valentía y su determinación para proteger a su hija y descubrir la verdad. Yalan serie turca.",
         "pais": "Turquía",
-        "imagen": "",
+        "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/Lazos+Rotos.jpg",
         "estado": "finalizada",
         "id": 1760129966562,
         "createdAt": "2025-10-10T20:59:26.562Z",
