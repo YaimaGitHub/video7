@@ -637,7 +637,7 @@ const EMBEDDED_CONFIG = {
       "id": 1760129966562,
       "createdAt": "2025-10-10T20:59:26.562Z",
       "updatedAt": "2025-10-12T01:04:15.828Z"
-    }
+    },
     {
       "titulo": "Destino roto",
       "genero": "Drama",
