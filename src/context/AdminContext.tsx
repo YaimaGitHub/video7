@@ -638,6 +638,19 @@ const EMBEDDED_CONFIG = {
       "createdAt": "2025-10-10T20:59:26.562Z",
       "updatedAt": "2025-10-12T01:04:15.828Z"
     }
+    {
+      "titulo": "Destino roto",
+      "genero": "Drama",
+      "capitulos": 121,
+      "año": 2022,
+      "descripcion": "Melike, que sobrevivió en prisión durante 20 años por el bien de su hija, cayó en medio de una gran mentira cuando fue puesta en libertad. Todas las injusticias y el mal que se le han hecho salen al descubierto ante Melike.",
+      "pais": "Turquía",
+      "imagen": "https://f005.backblazeb2.com/file/tvalacartaplus/tvalacartaplus/Destino+roto.jpg",
+      "estado": "finalizada",
+      "id": 1760239390038,
+      "createdAt": "2025-10-12T03:23:10.038Z",
+      "updatedAt": "2025-10-12T03:23:10.038Z"
+    }
   ],
   "settings": {
     "version": "2.1.0",
