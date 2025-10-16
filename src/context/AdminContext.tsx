@@ -281,11 +281,11 @@ const EMBEDDED_CONFIG = {
       "año": 2023,
       "descripcion": "Amor perfecto novela brasileña, Mare es una joven visionaria, regresa a su pueblo natal en 1934 para tomar las riendas del hotel familiar. Sus sueños se ven truncados cuando su padre, cegado por los prejuicios, la obliga a casarse con Gaspar, un hombre malvado y sin escrúpulos. La ambición desmedida de Gilda, la madrastra de Mare, la lleva a conspirar con Gaspar para deshacerse de Leonel, el padre de Mare, y culpar a la joven de su muerte.\n\nMare es encarcelada injustamente y da a luz en la cárcel. Tras ocho años en prisión, finalmente cumple su condena en el año 1942, sale de prisión con un solo objetivo, vengarse de quienes la traicionaron y recuperar a su hijo perdido.\n\nEn su camino, Mare se reencuentra con Orlando, un médico que la amó en el pasado y que ahora está dispuesto a luchar por ella. Juntos, se enfrentan a los poderosos de Sao Jacinto. Mientras tanto Marcelino, es hijo de Orlando y Mare, se ha criado en un monasterio, a cargo de Fray León, quien se ha convertido en una figura paterna para el joven.\n\nGilda se ha convertido en una mujer poderosa e influyente, Mare hará todo en sus manos para recuperar su vida, reencontrarse con su hijo y vengarse de aquellos que le hicieron daño. Amor perfecto telenovela brasileña. ",
       "pais": "Brasil",
-      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/e7dWk4egyN4MvtB1y1HROZIHI.jpeg",
+      "imagen": "https://f005.backblazeb2.com/file/tvalacartaplus/tvalacartaplus/Amor+Perfecto.jpg",
       "estado": "finalizada",
       "id": 1759548723639,
       "createdAt": "2025-10-04T03:32:03.639Z",
-      "updatedAt": "2025-10-04T03:32:03.639Z"
+      "updatedAt": "2025-10-16T07:53:21.464Z"
     },
     {
       "titulo": "Holding",
@@ -294,11 +294,11 @@ const EMBEDDED_CONFIG = {
       "año": 2024,
       "descripcion": "La campeona mundial de apnea, Aydan Türker, se prepara para una nueva inmersión récord. Aydan no solo es una atleta exitosa; es una mujer emprendedora que ha entregado su corazón a los niños. Todos los ingresos que obtiene de su gran pasión, el buceo, los dedica a mantener en pie las escuelas que fundó, incluyendo aquellas que atienden a niños con necesidades educativas especiales. Uno de esos colegios le traerá a su vida a F?rat y al comisario Kerem. Uno de los principales patrocinadores de Aydan Türker es Alt?nordu Holding, uno de los grupos empresariales más grandes del país. Bajo el liderazgo de Osman Alt?nordu y con el impulso de sus hijas Ebru, Ceyda y Sema, la empresa crece día a día con una imagen impecable. Sin embargo, detrás de ese brillante rostro se esconden luchas de poder, conflictos familiares y un pasado oscuro. Como todo gran poder, Alt?nordu Holding también tiene grandes enemigos. Su adversario más peligroso es Mahir Beyo?lu, cómplice de aquel pasado oscuro. El viejo amigo y compañero de Osman, Zakir, tendrá que jugar con astucia para detener a Mahir. En medio de este caos, Osman descubre que padece una enfermedad incurable. Al borde de una ruptura total, se encuentra frente a la necesidad de enfrentarse al secreto mejor guardado de su vida: su hija, y con ello, a toda su familia. Para esa confrontación, Osman elige el mismo día en que Aydan romperá su nuevo récord. Ese día marcará el inicio de un viaje sin retorno para todos.",
       "pais": "Turquía",
-      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/holding.jpeg",
+      "imagen": "https://f005.backblazeb2.com/file/tvalacartaplus/tvalacartaplus/Holding.jpg",
       "estado": "finalizada",
       "id": 1759548810927,
       "createdAt": "2025-10-04T03:33:30.927Z",
-      "updatedAt": "2025-10-04T03:41:48.825Z"
+      "updatedAt": "2025-10-16T07:49:47.713Z"
     },
     {
       "titulo": "La realeza",
@@ -480,7 +480,7 @@ const EMBEDDED_CONFIG = {
       "estado": "finalizada",
       "id": 1760022873950,
       "createdAt": "2025-10-09T15:14:33.950Z",
-      "updatedAt": "2025-10-12T01:11:03.187Z"
+      "updatedAt": "2025-10-16T07:50:24.024Z"
     },
     {
       "titulo": "Monteverde",
@@ -650,6 +650,19 @@ const EMBEDDED_CONFIG = {
       "id": 1760239390038,
       "createdAt": "2025-10-12T03:23:10.038Z",
       "updatedAt": "2025-10-12T03:23:10.038Z"
+    },
+    {
+      "titulo": "Dinastia Casillas",
+      "genero": "Acción",
+      "capitulos": 6,
+      "año": 2025,
+      "descripcion": "Tras la misteriosa desaparición de Aurelio, Ismael Casillas se ve obligado a enfrentar una despiadada batalla por el legado y la familia. Proteger a los suyos le exige alianzas y sacrificios.",
+      "pais": "Estados Unidos",
+      "imagen": "https://f005.backblazeb2.com/file/tvalacartaplus/tvalacartaplus/Dinastia+casilla.jpg",
+      "estado": "transmision",
+      "id": 1760601934996,
+      "createdAt": "2025-10-16T08:05:34.996Z",
+      "updatedAt": "2025-10-16T08:05:34.996Z"
     }
   ],
   "settings": {
