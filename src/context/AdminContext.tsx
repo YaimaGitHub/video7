@@ -249,13 +249,13 @@ const EMBEDDED_CONFIG = {
       "updatedAt": "2025-10-12T01:09:31.363Z"
     },
     {
-      "titulo": "Amar, donde el amor teje sus redes",
+      "titulo": "A.mar, donde el amor teje sus redes",
       "genero": "Romance",
       "capitulos": 90,
       "año": 2025,
-      "descripcion": "Estrella Contreras, una madre soltera que lucha por criar a su hija Azul, regresa a su pueblo natal tras la muerte de su padre, donde conoce a Fabián Bravo, un padre viudo y pescador que lucha por recuperar la custodia de su hija Yazmín.",
+      "descripcion": "Estrella, madre soltera, regresa al pequeño pueblo pesquero de su juventud tras la muerte de su padre. Se enamora de Fabián, padre viudo y pescador, y se enfrenta a un huracán de problemas que ponen en riesgo el bienestar de sus familias.",
       "pais": "México",
-      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/amar+donde+el+amor+teje+sus+redes.jpg",
+      "imagen": "https://f005.backblazeb2.com/file/tvalacartaplus/tvalacartaplus/A.mar%2C+donde+el+amor+teje+sus+redes.jpg",
       "estado": "finalizada",
       "id": 1759548453473,
       "createdAt": "2025-10-04T03:27:33.473Z",
