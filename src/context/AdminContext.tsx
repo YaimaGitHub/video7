@@ -587,19 +587,6 @@ const EMBEDDED_CONFIG = {
       "updatedAt": "2025-10-12T01:04:39.012Z"
     },
     {
-      "titulo": "Manía de ti",
-      "genero": "Drama",
-      "capitulos": 111,
-      "año": 2024,
-      "descripcion": "Narra la historia de Luna (Moreira) y Viola (Gabz), dos chicas que se convierten en amigas cuando la segunda se instala en Angra dos Reis junto a su marido Mavi. Con el tiempo, Viola se destaca en la gastronomía, misma área de Luna y también se involucra con Rudá (Chay Suede), el hombre al que Luna ama. Años después, Viola se ha convertido en una éxitosa chef, mientras Luna perdió todo lo que tenía. Ambas rivales se unen para intentar liberar a Rudá de la cárcel, tras una trampa ocasionada por Mavi.",
-      "pais": "Brasil",
-      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/mania+de+ti2.jpg",
-      "estado": "finalizada",
-      "id": 1760120912035,
-      "createdAt": "2025-10-10T18:28:32.035Z",
-      "updatedAt": "2025-10-10T18:28:32.035Z"
-    },
-    {
       "titulo": "Mehmed Sultán de las Conquistas",
       "genero": "Acción",
       "capitulos": 15,
