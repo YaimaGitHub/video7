@@ -607,7 +607,7 @@ const EMBEDDED_CONFIG = {
       "descripcion": "En esta apasionante producción, nos adentramos en el corazón del Imperio otomano, en una época cargada de conquistas y luchas por la justicia, para ser testigos del viaje triunfal del joven sultán Mehmed II, cuya inteligencia y valentía lo guiarán en su camino hacia la grandeza.",
       "pais": "Turquía",
       "imagen": "https://f005.backblazeb2.com/file/tvalacartaplus/tvalacartaplus/Mehmed+Sultan+of+Conquests+2.jpg",
-      "estado": "transmision",
+      "estado": "finalizada",
       "id": 1760128599656,
       "createdAt": "2025-10-10T20:36:39.656Z",
       "updatedAt": "2025-10-12T01:05:32.420Z"
