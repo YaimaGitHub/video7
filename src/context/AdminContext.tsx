@@ -320,11 +320,11 @@ const EMBEDDED_CONFIG = {
       "año": 2024,
       "descripcion": "En Valentina, mi amor especial, Herrera encarna a una joven en el espectro autista, quien es un genio en el mundo de la tecnología. El papel masculino principal es interpretado por Mauricio Novoa, un actor mexicano en ascenso, conocido por sus actuaciones en las últimas telenovelas producidas en Miami.\n\nValentina ha crecido protegida de la sociedad por su madre adoptiva en el pequeño pueblo de Chiquilistlán, donde destacó académicamente. Mudarse a la gran ciudad de Guadalajara después de que su madre fallece en un accidente será muy difícil, ya que se enfrentará lo peor y lo mejor de la humanidad: se enamorará por primera vez, conocerá nuevos amigos, pero también la envidia y los celos de aquellos que eligen no aceptarla.",
       "pais": "México",
-      "imagen": "https://f005.backblazeb2.com/file/120000/tvalacarta/valentina+mi+amor+especial.jpeg",
+      "imagen": "https://f005.backblazeb2.com/file/tvalacartaplus/tvalacartaplus/Valentina%2C+mi+amor+especial.jpg",
       "estado": "finalizada",
       "id": 1759549070923,
       "createdAt": "2025-10-04T03:37:50.923Z",
-      "updatedAt": "2025-10-04T03:37:50.923Z"
+      "updatedAt": "2025-10-16T12:40:22.316Z"
     },
     {
       "titulo": "Bahar",
